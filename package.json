@@ -2,7 +2,7 @@
   "name": "portfolio_site",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://szincone.github.io/react-site",
+  "homepage": "https://www.sawyerzincone.com/",
   "dependencies": {
     "font-awesome": "^4.7.0",
     "gh-pages": "^1.2.0",
