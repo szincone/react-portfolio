@@ -6,7 +6,7 @@
   color: white;
   border-radius: 35px;
   border: 2px solid white;
-  z-index: 999999;
+  z-index: 1;
   cursor: pointer;
 }
 button:hover {
@@ -27,6 +27,7 @@ a {
 .mainLinksDiv {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-evenly;
   align-items: center;
 }
