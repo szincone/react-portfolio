@@ -1,0 +1,29 @@
+.app {
+  text-align: center;
+  margin: 0 auto;
+  font-size: 62.5%;
+  font-family: "Oswald", sans-serif;
+  background: #02182b;
+  /* animation: pulse 120s infinite; */
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.appWidthDiv {
+  max-width: 800px;
+  /* width: 100%; */
+}
+
+@keyframes pulse {
+  0% {
+    background-color: #02182b;
+  }
+  50% {
+    background-color: #034078;
+  }
+  100% {
+    background-color: #02182b;
+  }
+}
