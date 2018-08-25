@@ -15,9 +15,9 @@ export const AboutPage = () => {
       </h4>
       <i className="fa fa-dribbble" aria-hidden="true" />
       <h4>
-        I am a former teacher math teacher who has a deep love for making things
-        that make a difference. When I'm not coding I enjoy playing guitar,
-        working out, or relaxing with my wife and cats.
+        I am a former math teacher who has a deep love for making things that
+        make a difference. When I'm not coding I enjoy playing guitar, working
+        out, or relaxing with my wife and cats.
       </h4>
       <Link to="/">
         <button className="button">
