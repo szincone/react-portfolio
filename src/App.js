@@ -4,12 +4,13 @@ import Particle from "./components/particles/Particle";
 import { HomePage } from "./components/homepage/HomePage";
 import { AboutPage } from "./components/aboutpage/AboutPage";
 import { ButtonLinks } from "./components/buttonlinks/ButtonLinks";
+
 import "./css/app.css";
 
 class App extends Component {
   render() {
     return (
-      <div className="app" style={{ minHeight: "100vh" }}>
+      <div className="app">
         <Router basename={process.env.PUBLIC_URL}>
           <div className="appWidthDiv">
             <Route exact path="/" component={HomePage} />
