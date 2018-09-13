@@ -2,7 +2,6 @@
   font-size: 2rem;
   padding-top: 20vh;
 }
-
 .homePageWrapper .jobDescriptionDiv {
   display: flex;
   justify-content: center;
@@ -15,13 +14,11 @@
 .homePageWrapper .jobDescriptionDiv i {
   font-weight: bold;
 }
-
 .homePageWrapper h1 {
   font-size: 3rem;
   font-family: "Rubik Mono One", sans-serif;
   word-break: break-word;
 }
-
 .homePageWrapper ul {
   list-style-type: none;
   display: flex;

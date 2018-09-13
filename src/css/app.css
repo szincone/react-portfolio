@@ -11,12 +11,10 @@
   align-items: center;
   min-height: 100vh;
 }
-
 .appWidthDiv {
   max-width: 800px;
   /* width: 100%; */
 }
-
 @keyframes pulse {
   0% {
     background-color: #02182b;
