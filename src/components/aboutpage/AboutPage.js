@@ -23,7 +23,7 @@ export const AboutPage = () => {
         I am a former math teacher who has a deep love for making things that
         make a difference and help improve people's lives. When I'm not
         programming I enjoy playing guitar, working out, or relaxing with my
-        wife and crazy cats.
+        wife and cats.
       </h4>
       <Link to="/">
         <button className="button">

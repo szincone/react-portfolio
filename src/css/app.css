@@ -4,7 +4,6 @@
   font-size: 62.5%;
   font-family: "Oswald", sans-serif;
   background: #02182b;
-  /* animation: pulse 120s infinite; */
   color: #ffffff;
   display: flex;
   flex-direction: column;
@@ -13,7 +12,6 @@
 }
 .appWidthDiv {
   max-width: 800px;
-  /* width: 100%; */
 }
 @keyframes pulse {
   0% {

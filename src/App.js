@@ -8,13 +8,32 @@ import { ButtonLinks } from "./components/buttonlinks/ButtonLinks";
 import "./css/app.css";
 
 class App extends Component {
+  state = {
+    subtitle: "Full-Stack Developer",
+  };
+
   render() {
     return (
       <div className="app">
         <Router basename={process.env.PUBLIC_URL}>
           <div className="appWidthDiv">
-            <Route exact path="/" component={HomePage} />
-            <Route exact path="/" component={ButtonLinks} />
+            <Route
+              exact
+              path="/"
+              render={props => (
+                <HomePage {...props} subtitleVar={this.state.subtitle} />
+              )}
+            />
+            <Route
+              exact
+              path="/"
+              render={props => (
+                <ButtonLinks
+                  {...props}
+                  subtitleHandler={this.subtitleHandler}
+                />
+              )}
+            />
             <Route path="/about" component={AboutPage} />
           </div>
         </Router>

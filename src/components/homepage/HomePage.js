@@ -7,7 +7,7 @@ export const HomePage = props => {
       <h1>Sawyer Zincone</h1>
       <div className="jobDescriptionDiv">
         <i className="fa fa-dribbble" aria-hidden="true" />
-        <h4>Full-Stack Developer</h4>
+        <h4>{props.subtitleVar}</h4>
         <i className="fa fa-dribbble" aria-hidden="true" />
       </div>
     </div>
