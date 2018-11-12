@@ -13,14 +13,3 @@
 .appWidthDiv {
   max-width: 800px;
 }
-@keyframes pulse {
-  0% {
-    background-color: #02182b;
-  }
-  50% {
-    background-color: #034078;
-  }
-  100% {
-    background-color: #02182b;
-  }
-}
