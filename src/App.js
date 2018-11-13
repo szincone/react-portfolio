@@ -12,6 +12,7 @@ class App extends Component {
     person: {
       name: "Sawyer Zincone",
       skill: "Full-Stack Developer",
+      email: "szincone.work@gmail.com",
     },
   };
 
@@ -30,12 +31,7 @@ class App extends Component {
             <Route
               exact
               path="/"
-              render={props => (
-                <ButtonLinks
-                  {...props}
-                  subtitleHandler={this.subtitleHandler}
-                />
-              )}
+              render={props => <ButtonLinks {...props} />}
             />
             <Route path="/about" component={AboutPage} />
           </div>
