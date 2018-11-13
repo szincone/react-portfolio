@@ -9,7 +9,10 @@ import "./css/app.css";
 
 class App extends Component {
   state = {
-    subtitle: "Full-Stack Developer",
+    person: {
+      name: "Sawyer Zincone",
+      skill: "Full-Stack Developer",
+    },
   };
 
   render() {
@@ -21,7 +24,7 @@ class App extends Component {
               exact
               path="/"
               render={props => (
-                <HomePage {...props} subtitleVar={this.state.subtitle} />
+                <HomePage {...props} person={this.state.person} />
               )}
             />
             <Route

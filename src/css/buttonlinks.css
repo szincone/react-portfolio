@@ -30,51 +30,6 @@ a {
   justify-content: space-evenly;
   align-items: center;
 }
-/* @keyframes shake {
-  30%,
-  70% {
-    transform: translate3d(0px, 0, 0);
-  }
-  32%,
-  68% {
-    transform: translate3d(1px, 0 0);
-  }
-  34%,
-  66% {
-    transform: translate3d(-1px, 0, 0);
-  }
-  36%,
-  64% {
-    transform: translate3d(2px, 0, 0);
-  }
-  38%,
-  62% {
-    transform: translate3d(-2px, 0, 0);
-  }
-  40%,
-  60% {
-    transform: translate3d(3px, 0, 0);
-  }
-  42%,
-  58% {
-    transform: translate3d(-3px, 0, 0);
-  }
-  44%,
-  56% {
-    transform: translate3d(3.5px, 0, 0);
-  }
-  46%,
-  54% {
-    transform: translate3d(-3.5px, 0, 0);
-  }
-  48%,
-  52% {
-    transform: translate3d(4px, 0, 0);
-  }
-  50% {
-    transform: translate3d(-4px, 0, 0);
-  }
-} */
 .tooltip {
   position: relative;
   display: inline-block;
@@ -84,9 +39,7 @@ a {
   width: 120px;
   color: #fff;
   text-align: center;
-  border-radius: 35px;
   font-family: "Oswald", sans-serif;
-  padding: 5px 0;
   position: absolute;
   z-index: 1;
   top: 90%;
@@ -106,4 +59,10 @@ a {
 .tooltip:hover .tooltiptext {
   visibility: visible;
   opacity: 1;
+}
+/* tool tips start getting obscured if you don't remove at this width */
+@media (max-width: 600px) {
+  .tooltip .tooltiptext {
+    display: none;
+  }
 }
