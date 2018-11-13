@@ -5,7 +5,6 @@ export const HomePage = props => {
   const emailStyle = {
     fontSize: "1rem",
     marginBottom: ".5rem",
-    // fontWeight: "bold",
     fontFamily: "Oswald, san-serif",
     fontFamily: "Rubik Mono One, san-serif",
   };
