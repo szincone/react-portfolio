@@ -3,7 +3,7 @@ import "../../css/homepage.css";
 
 export const HomePage = props => {
   const emailStyle = {
-    fontSize: "1rem",
+    fontSize: "1.4rem",
     marginBottom: ".5rem",
   };
 
