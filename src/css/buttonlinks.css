@@ -9,6 +9,9 @@
   z-index: 1;
   cursor: pointer;
 }
+button:focus {
+  outline: 0;
+}
 button:hover {
   background: #de4d60;
 }
