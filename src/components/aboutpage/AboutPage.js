@@ -20,8 +20,8 @@ export const AboutPage = () => {
       </h4>
       <i className="fa fa-dribbble" aria-hidden="true" />
       <h4>
-        When I'm not programming I'm usually playing guitar, working-out, or
-        relaxing with my wife and cats.
+        When I'm not <span style={{ color: '#ECC30B' }}>programming</span> I'm
+        usually playing guitar, working-out, or relaxing with my wife and cats.
       </h4>
       <Link to="/">
         <button className="button">
