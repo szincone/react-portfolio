@@ -1,9 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-import "../../css/buttonlinks.css";
+import '../../css/buttonlinks.css';
 
-export const ButtonLinks = props => {
+export const ButtonLinks = (props) => {
   return (
     <div className="mainLinksDiv">
       <a

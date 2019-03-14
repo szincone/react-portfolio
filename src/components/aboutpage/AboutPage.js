@@ -1,9 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 import '../../css/aboutpage.css';
 
-export const AboutPage = () => {
+export function AboutPage() {
   return (
     <div className="aboutPageDiv">
       <h1>About Me</h1>
@@ -30,4 +29,4 @@ export const AboutPage = () => {
       </Link>
     </div>
   );
-};
+}
