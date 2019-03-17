@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Button, Grid, Typography, withStyles } from '@material-ui/core';
+import { Link as RouterLink } from 'react-router-dom';
+import { Button, Grid, Link, Typography, withStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
 
 const styles = (theme) => ({
@@ -20,17 +20,16 @@ const styles = (theme) => ({
     padding: '0.5rem 2rem',
     fontSize: '2rem',
     background: theme.palette.primary.accent,
-    color: 'white',
+    color: theme.palette.secondary.main,
     borderRadius: '35px',
-    border: '2px solid white',
+    border: `2px solid ${theme.palette.secondary.main}`,
     zIndex: '1',
     cursor: 'pointer',
   },
   linkDec: { textDecoration: 'none' },
 });
 
-function AboutPage(props) {
-  const { classes } = props;
+function AboutPage({ classes }) {
   return (
     <Grid className={classes.aboutPageDiv}>
       <Typography variant="h1" className={classes.mainTitle} color="secondary">
@@ -58,7 +57,12 @@ function AboutPage(props) {
         I&apos;m usually playing guitar, working-out, or relaxing with my wife
         and cats.
       </Typography>
-      <Link to="/" className={classes.linkDec}>
+      <Link
+        component={RouterLink}
+        to="/"
+        underline="none"
+        className={classes.linkDec}
+      >
         <Button className={classes.homeLinkButton} type="submit">
           <i className="fa fa-home" aria-hidden="true" />
         </Button>
@@ -66,7 +70,6 @@ function AboutPage(props) {
     </Grid>
   );
 }
-
 AboutPage.propTypes = { classes: PropTypes.objectOf(PropTypes.string) };
 AboutPage.defaultProps = { classes: styles };
 
