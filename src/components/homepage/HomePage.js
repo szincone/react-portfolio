@@ -1,23 +1,54 @@
 import React from 'react';
-import '../../css/homepage.css';
+import { Grid, Typography, withStyles } from '@material-ui/core';
+import PropTypes from 'prop-types';
+// import '../../css/homepage.css';
 
-export const HomePage = (props) => {
-  const emailStyle = {
+const styles = (theme) => ({
+  homepageWraper: {
+    fontSize: '2rem',
+    paddingTop: '20vh',
+  },
+  mainTitle: {
+    fontSize: '3rem',
+    fontFamily: '"Rubik Mono One", sans-serif',
+    wordBreak: 'break-word',
+  },
+  jobTitleDiv: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  jobTitle: {
+    padding: '0.75rem',
+    fontWeight: 'bold',
+  },
+  email: {
     fontSize: '1.4rem',
     marginBottom: '.5rem',
-  };
-
+  },
+});
+function HomePage({ classes, person }) {
   return (
-    <div className="homePageWrapper">
-      <h1>{props.person.name}</h1>
-      <div className="jobDescriptionDiv">
+    <Grid className={classes.homepageWraper}>
+      <Typography variant="h2" color="secondary" className={classes.mainTitle}>
+        {person.name}
+      </Typography>
+      <Grid className={classes.jobTitleDiv}>
         <i className="fa fa-dribbble" aria-hidden="true" />
-        <h4>{props.person.skill}</h4>
+        <Typography variant="h4" color="secondary" className={classes.jobTitle}>
+          {person.skill}
+        </Typography>
         <i className="fa fa-dribbble" aria-hidden="true" />
-      </div>
-      <div>
-        <h4 style={emailStyle}>{props.person.email}</h4>
-      </div>
-    </div>
+      </Grid>
+      <Grid>
+        <Typography variant="h4" color="secondary" className={classes.email}>
+          {person.email}
+        </Typography>
+      </Grid>
+    </Grid>
   );
-};
+}
+HomePage.propTypes = { classes: PropTypes.objectOf(PropTypes.string) };
+HomePage.defaultProps = { classes: styles };
+
+export default withStyles(styles)(HomePage);
