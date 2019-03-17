@@ -26,7 +26,6 @@ const styles = (theme) => ({
     zIndex: '1',
     cursor: 'pointer',
   },
-  linkDec: { textDecoration: 'none' },
 });
 
 function AboutPage({ classes }) {
@@ -57,12 +56,7 @@ function AboutPage({ classes }) {
         I&apos;m usually playing guitar, working-out, or relaxing with my wife
         and cats.
       </Typography>
-      <Link
-        component={RouterLink}
-        to="/"
-        underline="none"
-        className={classes.linkDec}
-      >
+      <Link component={RouterLink} to="/" underline="none">
         <Button className={classes.homeLinkButton} type="submit">
           <i className="fa fa-home" aria-hidden="true" />
         </Button>
