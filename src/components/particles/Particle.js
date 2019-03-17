@@ -1,9 +1,9 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Particles from 'react-particles-js';
 
-const Particle = (props) => {
+function Particle() {
   return (
-    <Fragment>
+    <>
       <Particles
         params={{
           particles: {
@@ -14,18 +14,14 @@ const Particle = (props) => {
                 value_area: 800,
               },
             },
-            color: {
-              value: '#fff',
-            },
+            color: { value: '#fff' },
             shape: {
               type: 'circle',
               stroke: {
                 width: 0,
                 color: '#000000',
               },
-              polygon: {
-                nb_sides: 5,
-              },
+              polygon: { nb_sides: 5 },
               image: {
                 src: 'img/github.svg',
                 width: 100,
@@ -90,9 +86,7 @@ const Particle = (props) => {
             modes: {
               grab: {
                 distance: 400,
-                line_linked: {
-                  opacity: 0.5,
-                },
+                line_linked: { opacity: 0.5 },
               },
               bubble: {
                 distance: 400,
@@ -105,12 +99,8 @@ const Particle = (props) => {
                 distance: 200,
                 duration: 0.4,
               },
-              push: {
-                particles_nb: 4,
-              },
-              remove: {
-                particles_nb: 2,
-              },
+              push: { particles_nb: 4 },
+              remove: { particles_nb: 2 },
             },
           },
           retina_detect: true,
@@ -121,8 +111,8 @@ const Particle = (props) => {
           left: '0',
         }}
       />
-    </Fragment>
+    </>
   );
-};
+}
 
 export default Particle;
