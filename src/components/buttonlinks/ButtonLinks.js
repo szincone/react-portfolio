@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Button, Grid, withStyles } from '@material-ui/core';
+import { Link as RouterLink } from 'react-router-dom';
+import { Button, Grid, Link, withStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
 // import '../../css/buttonlinks.css';
 
@@ -16,53 +16,38 @@ const styles = (theme) => ({
     zIndex: '1',
     cursor: 'pointer',
   },
-  aLink: {
-    zIndex: '1',
-    color: theme.palette.secondary,
-  },
 });
 
 function ButtonLinks(props) {
   const { classes } = props;
   return (
-    <Grid className="mainLinksDiv">
-      <a
-        target="_blank"
-        href="https://github.com/szincone"
-        rel="noopener noreferrer"
-        className="tooltip"
-      >
+    <Grid>
+      <Link underline="none" href="https://github.com/szincone">
         <Button className={classes.button}>
           <i className="fa fa-github" aria-hidden="true" />
-          <span className="tooltiptext">GitHub</span>
         </Button>
-      </a>
-      <a
+      </Link>
+      <Link
         target="_blank"
+        underline="none"
         href="https://www.linkedin.com/in/szincone/"
-        rel="noopener noreferrer"
-        className="tooltip"
       >
         <Button className={classes.button}>
           <i className="fa fa-linkedin" aria-hidden="true" />
-          <span className="tooltiptext">LinkedIn</span>
         </Button>
-      </a>
-      <a
+      </Link>
+      <Link
         target="_blank"
+        underline="none"
         href="mailto:szincone.work@gmail.com"
-        rel="noopener noreferrer"
-        className="tooltip"
       >
         <Button className={classes.button}>
           <i className="fa fa-envelope" aria-hidden="true" />
-          <span className="tooltiptext">Mail</span>
         </Button>
-      </a>
-      <Link to="/about" className="tooltip">
+      </Link>
+      <Link component={RouterLink} to="/about">
         <Button className={classes.button}>
           <i className="fa fa-user" aria-hidden="true" />
-          <span className="tooltiptext">About</span>
         </Button>
       </Link>
     </Grid>
