@@ -5,9 +5,9 @@ import { createMuiTheme } from '@material-ui/core/styles';
 export default createMuiTheme({
   typography: {
     useNextVariants: true,
-    // color: '#FFFFFF',
     body1: { color: '#FFFFFF' },
     body2: { color: '#FFFFFF' },
+    headerFamily: ['"Rubik Mono One"', 'sans-serif'].join(','),
   },
   palette: {
     primary: {
