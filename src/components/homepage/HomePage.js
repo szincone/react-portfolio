@@ -1,7 +1,6 @@
 import React from 'react';
 import { Grid, Typography, withStyles } from '@material-ui/core';
 import PropTypes from 'prop-types';
-// import '../../css/homepage.css';
 
 const styles = (theme) => ({
   homepageWraper: {
@@ -21,10 +20,12 @@ const styles = (theme) => ({
   jobTitle: {
     padding: '0.75rem',
     fontWeight: 'bold',
+    wordBreak: 'break-word',
   },
   email: {
     fontSize: '1.4rem',
     marginBottom: '.5rem',
+    wordBreak: 'break-word',
   },
 });
 function HomePage({ classes, person }) {
@@ -48,7 +49,17 @@ function HomePage({ classes, person }) {
     </Grid>
   );
 }
-HomePage.propTypes = { classes: PropTypes.objectOf(PropTypes.string) };
-HomePage.defaultProps = { classes: styles };
+HomePage.propTypes = {
+  classes: PropTypes.objectOf(PropTypes.string),
+  person: PropTypes.objectOf(PropTypes.string),
+};
+HomePage.defaultProps = {
+  classes: styles,
+  person: {
+    name: 'Sawyer Zincone',
+    skill: 'Full-Stack Engineer',
+    email: 'szincone.work@gmail.com',
+  },
+};
 
 export default withStyles(styles)(HomePage);
