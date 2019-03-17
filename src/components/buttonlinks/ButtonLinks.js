@@ -1,21 +1,48 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Button, Grid, withStyles } from '@material-ui/core';
+import PropTypes from 'prop-types';
+// import '../../css/buttonlinks.css';
 
-import '../../css/buttonlinks.css';
+const styles = (theme) => ({
+  aboutPageDiv: {
+    padding: '1rem',
+    paddingTop: '5rem',
+    zIndex: '1',
+    position: 'relative',
+  },
+  mainTitle: {
+    fontFamily: '"Rubik Mono One", sans-serif',
+    fontSize: '2.2rem',
+    marginBottom: '.8rem',
+  },
+  homeLinkButton: {
+    margin: '1.5rem 0.5rem',
+    padding: '0.5rem 2rem',
+    fontSize: '2rem',
+    background: theme.palette.primary.accent,
+    color: 'white',
+    borderRadius: '35px',
+    border: '2px solid white',
+    zIndex: '1',
+    cursor: 'pointer',
+  },
+  linkDec: { textDecoration: 'none' },
+});
 
-export const ButtonLinks = (props) => {
+function ButtonLinks(props) {
   return (
-    <div className="mainLinksDiv">
+    <Grid className="mainLinksDiv">
       <a
         target="_blank"
         href="https://github.com/szincone"
         rel="noopener noreferrer"
         className="tooltip"
       >
-        <button className="button">
+        <Button className="button">
           <i className="fa fa-github" aria-hidden="true" />
           <span className="tooltiptext">GitHub</span>
-        </button>
+        </Button>
       </a>
       <a
         target="_blank"
@@ -23,10 +50,10 @@ export const ButtonLinks = (props) => {
         rel="noopener noreferrer"
         className="tooltip"
       >
-        <button className="button">
+        <Button className="button">
           <i className="fa fa-linkedin" aria-hidden="true" />
           <span className="tooltiptext">LinkedIn</span>
-        </button>
+        </Button>
       </a>
       <a
         target="_blank"
@@ -34,17 +61,19 @@ export const ButtonLinks = (props) => {
         rel="noopener noreferrer"
         className="tooltip"
       >
-        <button className="button">
+        <Button className="button">
           <i className="fa fa-envelope" aria-hidden="true" />
           <span className="tooltiptext">Mail</span>
-        </button>
+        </Button>
       </a>
       <Link to="/about" className="tooltip">
-        <button className="button aboutMeButton">
+        <Button className="button aboutMeButton">
           <i className="fa fa-user" aria-hidden="true" />
           <span className="tooltiptext">About</span>
-        </button>
+        </Button>
       </Link>
-    </div>
+    </Grid>
   );
-};
+}
+
+export default withStyles(styles)(ButtonLinks);
