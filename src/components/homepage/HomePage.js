@@ -9,7 +9,7 @@ const styles = (theme) => ({
   },
   mainTitle: {
     fontSize: '3rem',
-    fontFamily: '"Rubik Mono One", sans-serif',
+    fontFamily: theme.typography.headerFamily,
     wordBreak: 'break-word',
   },
   jobTitleDiv: {
