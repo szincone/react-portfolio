@@ -1,4 +1,4 @@
-# 🗿 portfolio_site
+# 🗿 react-portfolio
 Portfolio site built w/ React, Material-UI, and Particle.js.
 
 ## modules
@@ -8,7 +8,7 @@ Portfolio site built w/ React, Material-UI, and Particle.js.
 - Font-Awesome
 
 ## authors
-- Sawyer Zincone -_initial work_- [szincone](https://github.com/szincone) :clubs:
+- Sawyer Zincone -_initial work_- [szincone](https://github.com/szincone) 🗿
 
 ## license
 This project is licensed under the MIT License - see the [LICENSE](https://github.com/szincone/nba-api/blob/master/LICENSE) file for details.
