@@ -1,35 +1,36 @@
-import React from 'react';
-import { Route, BrowserRouter as Router } from 'react-router-dom';
-import { Grid, withStyles } from '@material-ui/core';
-import PropTypes from 'prop-types';
-import { AboutPage, ButtonLinks, HomePage, Particle } from './components';
+import React from "react";
+import { Route, BrowserRouter as Router } from "react-router-dom";
+import { Grid, withStyles } from "@material-ui/core";
+import PropTypes from "prop-types";
+import { AboutPage, ButtonLinks, Particle } from "./components";
+import { HomePage } from "./components/homepage/HomePage";
 
 const styles = (theme) => ({
   appContainer: {
-    textAlign: 'center',
-    margin: '0 auto',
-    fontSize: '62.5%',
+    textAlign: "center",
+    margin: "0 auto",
+    fontSize: "62.5%",
     fontFamily: '"Oswald", sans-serif',
     background: theme.palette.primary.main,
     color: theme.palette.secondary.main,
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    minHeight: '100vh',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    minHeight: "100vh",
   },
-  containerWidth: { maxWidth: '800px' },
+  containerWidth: { maxWidth: "800px" },
 });
 
 function App({ classes }) {
   const person = {
-    name: 'Sawyer Zincone',
-    skill: 'Full-Stack Engineer',
-    email: 'szincone.work@gmail.com',
+    name: "Sawyer Zincone",
+    skill: "Full-Stack Engineer",
+    email: "szincone.work@gmail.com",
   };
   const urls = {
-    github: 'https://github.com/szincone/',
-    linkedin: 'https://www.linkedin.com/in/szincone/',
-    email: 'mailto:szincone.work@gmail.com',
+    github: "https://github.com/szincone/",
+    linkedin: "https://www.linkedin.com/in/szincone/",
+    email: "mailto:szincone.work@gmail.com",
   };
   return (
     <Grid className={classes.appContainer}>

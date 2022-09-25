@@ -1,34 +1,34 @@
-import React from 'react';
-import { Grid, Typography, withStyles } from '@material-ui/core';
-import PropTypes from 'prop-types';
+import React from "react";
+import { Grid, Typography } from "@material-ui/core";
+import PropTypes from "prop-types";
 
-const styles = (theme) => ({
+const styles = (theme: any) => ({
   homepageWraper: {
-    fontSize: '2rem',
-    paddingTop: '20vh',
+    fontSize: "2rem",
+    paddingTop: "20vh",
   },
   mainTitle: {
-    fontSize: '3rem',
+    fontSize: "3rem",
     fontFamily: theme.typography.headerFamily,
-    wordBreak: 'break-word',
+    wordBreak: "break-word",
   },
   jobTitleDiv: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
   },
   jobTitle: {
-    padding: '0.75rem',
-    fontWeight: 'bold',
-    wordBreak: 'break-word',
+    padding: "0.75rem",
+    fontWeight: "bold",
+    wordBreak: "break-word",
   },
   email: {
-    fontSize: '1.4rem',
-    marginBottom: '.5rem',
-    wordBreak: 'break-word',
+    fontSize: "1.4rem",
+    marginBottom: ".5rem",
+    wordBreak: "break-word",
   },
 });
-function HomePage({ classes, person }) {
+export function HomePage({ classes, person }) {
   return (
     <Grid className={classes.homepageWraper}>
       <Typography variant="h2" color="secondary" className={classes.mainTitle}>
@@ -56,10 +56,8 @@ HomePage.propTypes = {
 HomePage.defaultProps = {
   classes: styles,
   person: {
-    name: 'Sawyer Zincone',
-    skill: 'Full-Stack Engineer',
-    email: 'szincone.work@gmail.com',
+    name: "Sawyer Zincone",
+    skill: "Full-Stack Engineer",
+    email: "szincone.work@gmail.com",
   },
 };
-
-export default withStyles(styles)(HomePage);
