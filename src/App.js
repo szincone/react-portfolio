@@ -24,7 +24,7 @@ function App({ classes }) {
   const person = {
     name: 'Sawyer Zincone',
     skill: 'Full-Stack Engineer',
-    email: 'szincone.work@gmail.com',
+    email: 'sawyerzincone@gmail.com',
   };
   const urls = {
     github: 'https://github.com/szincone/',
