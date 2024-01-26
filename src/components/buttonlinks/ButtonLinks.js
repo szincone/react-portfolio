@@ -1,19 +1,19 @@
-import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
-import { Button, Grid, Link, withStyles } from '@material-ui/core';
-import PropTypes from 'prop-types';
+import React from "react";
+import { Link as RouterLink } from "react-router-dom";
+import { Button, Grid, Link, withStyles } from "@material-ui/core";
+import PropTypes from "prop-types";
 
 const styles = (theme) => ({
   button: {
-    margin: '0.5rem',
-    padding: '0.5rem 2rem',
-    fontSize: '2rem',
+    margin: "0.5rem",
+    padding: "0.5rem 2rem",
+    fontSize: "2rem",
     background: theme.palette.primary.accent,
     color: theme.palette.secondary.main,
-    borderRadius: '35px',
+    borderRadius: "35px",
     border: `2px solid ${theme.palette.secondary.main}`,
-    zIndex: '1',
-    cursor: 'pointer',
+    zIndex: "1",
+    cursor: "pointer",
   },
 });
 
@@ -51,9 +51,9 @@ ButtonLinks.propTypes = {
 ButtonLinks.defaultProps = {
   classes: styles,
   urls: {
-    github: 'https://github.com/szincone/',
-    linkedin: 'https://www.linkedin.com/in/szincone/',
-    email: 'mailto:szincone.work@gmail.com',
+    github: "https://github.com/szincone/",
+    linkedin: "https://www.linkedin.com/in/szincone/",
+    email: "mailto:sawyerzincone@gmail.com",
   },
 };
 
