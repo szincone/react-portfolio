@@ -16,9 +16,30 @@ const styles = (theme) => ({
     flexDirection: "column",
     alignItems: "center",
     minHeight: "100vh",
+    padding: theme.spacing(2),
   },
-  containerWidth: { maxWidth: "800px" },
+  containerWidth: {
+    maxWidth: "800px",
+    width: "100%",
+    padding: theme.spacing(2),
+  },
 });
+
+const Routes = ({ person, urls, classes }) => (
+  <Grid className={classes.containerWidth}>
+    <Route
+      exact
+      path="/"
+      render={(props) => <HomePage {...props} person={person} />}
+    />
+    <Route
+      exact
+      path="/"
+      render={(props) => <ButtonLinks {...props} urls={urls} />}
+    />
+    <Route path="/about" component={AboutPage} />
+  </Grid>
+);
 
 function App({ classes }) {
   const person = {
@@ -34,24 +55,18 @@ function App({ classes }) {
   return (
     <Grid className={classes.appContainer}>
       <Router>
-        <Grid className={classes.containerWidth}>
-          <Route
-            exact
-            path="/"
-            render={(props) => <HomePage {...props} person={person} />}
-          />
-          <Route
-            exact
-            path="/"
-            render={(props) => <ButtonLinks {...props} urls={urls} />}
-          />
-          <Route path="/about" component={AboutPage} />
-        </Grid>
+        <Routes person={person} urls={urls} classes={classes} />
       </Router>
       <Particle />
     </Grid>
   );
 }
+
+Routes.propTypes = {
+  person: PropTypes.object.isRequired,
+  urls: PropTypes.object.isRequired,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+};
 App.propTypes = { classes: PropTypes.objectOf(PropTypes.string) };
 App.defaultProps = { classes: styles };
 
