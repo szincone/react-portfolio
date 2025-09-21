@@ -1,14 +1,14 @@
 import React from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { Button, Grid, Link, withStyles } from "@material-ui/core";
-import PropTypes from "prop-types";
+import { ButtonLinksProps, StylesFunction } from "../../types";
 
-const styles = (theme) => ({
+const styles: StylesFunction = (theme) => ({
   button: {
     margin: "0.5rem",
     padding: "0.5rem 2rem",
     fontSize: "2rem",
-    background: theme.palette.primary.accent,
+    background: (theme.palette.primary as any).accent,
     color: theme.palette.secondary.main,
     borderRadius: "35px",
     border: `2px solid ${theme.palette.secondary.main}`,
@@ -17,7 +17,7 @@ const styles = (theme) => ({
   },
 });
 
-function ButtonLinks(props) {
+const ButtonLinks: React.FC<ButtonLinksProps> = (props) => {
   const { classes, urls } = props;
   return (
     <Grid>
@@ -43,18 +43,6 @@ function ButtonLinks(props) {
       </Link>
     </Grid>
   );
-}
-ButtonLinks.propTypes = {
-  classes: PropTypes.objectOf(PropTypes.string),
-  urls: PropTypes.objectOf(PropTypes.string),
-};
-ButtonLinks.defaultProps = {
-  classes: styles,
-  urls: {
-    github: "https://github.com/szincone/",
-    linkedin: "https://www.linkedin.com/in/szincone/",
-    email: "mailto:sawyerzincone@gmail.com",
-  },
 };
 
 export default withStyles(styles)(ButtonLinks);
