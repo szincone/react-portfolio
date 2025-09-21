@@ -1,10 +1,10 @@
 import React from "react";
 import { Route, BrowserRouter as Router } from "react-router-dom";
 import { Grid, withStyles } from "@material-ui/core";
-import PropTypes from "prop-types";
 import { AboutPage, ButtonLinks, HomePage, Particle } from "./components";
+import { AppProps, RoutesProps, StylesFunction, Person, Urls } from "./types";
 
-const styles = (theme) => ({
+const styles: StylesFunction = (theme) => ({
   appContainer: {
     textAlign: "center",
     margin: "0 auto",
@@ -25,29 +25,29 @@ const styles = (theme) => ({
   },
 });
 
-const Routes = ({ person, urls, classes }) => (
+const Routes: React.FC<RoutesProps> = ({ person, urls, classes }) => (
   <Grid className={classes.containerWidth}>
     <Route
       exact
       path="/"
-      render={(props) => <HomePage {...props} person={person} />}
+      render={(props: any) => <HomePage {...props} person={person} />}
     />
     <Route
       exact
       path="/"
-      render={(props) => <ButtonLinks {...props} urls={urls} />}
+      render={(props: any) => <ButtonLinks {...props} urls={urls} />}
     />
     <Route path="/about" component={AboutPage} />
   </Grid>
 );
 
-function App({ classes }) {
-  const person = {
+const App: React.FC<AppProps> = ({ classes }) => {
+  const person: Person = {
     name: "Sawyer Zincone",
     skill: "Full-Stack Engineer",
     email: "sawyerzincone@gmail.com",
   };
-  const urls = {
+  const urls: Urls = {
     github: "https://github.com/szincone/",
     linkedin: "https://www.linkedin.com/in/szincone/",
     email: "mailto:sawyerzincone@gmail.com",
@@ -60,14 +60,6 @@ function App({ classes }) {
       <Particle />
     </Grid>
   );
-}
-
-Routes.propTypes = {
-  person: PropTypes.object.isRequired,
-  urls: PropTypes.object.isRequired,
-  classes: PropTypes.objectOf(PropTypes.string).isRequired,
 };
-App.propTypes = { classes: PropTypes.objectOf(PropTypes.string) };
-App.defaultProps = { classes: styles };
 
 export default withStyles(styles)(App);

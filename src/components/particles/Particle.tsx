@@ -1,7 +1,7 @@
 import React from 'react';
 import Particles from 'react-particles-js';
 
-function Particle() {
+const Particle: React.FC = () => {
   return (
     <>
       <Particles
@@ -93,7 +93,6 @@ function Particle() {
                 size: 4,
                 duration: 0.3,
                 opacity: 1,
-                speed: 3,
               },
               repulse: {
                 distance: 200,

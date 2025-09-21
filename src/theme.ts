@@ -1,8 +1,11 @@
 import { createMuiTheme } from "@material-ui/core/styles";
+import './material-ui-augment.d.ts';
 
 // breakpoint values {xs: 0, sm: 600, md: 960, lg: 1280, xl: 1920}
-const getRandomColor = (type) => {
-  const colors = {
+type ColorType = 'primary' | 'secondary' | 'background';
+
+const getRandomColor = (type: ColorType): string => {
+  const colors: Record<ColorType, string[]> = {
     primary: [
       "#02182b",
       "#05668D",
@@ -33,13 +36,13 @@ export default createMuiTheme({
     body1: { color: "#FFFFFF" },
     body2: { color: "#FFFFFF" },
     headerFamily: ['"Rubik Mono One"', "sans-serif"].join(","),
-  },
+  } as any,
   palette: {
     primary: {
       main: getRandomColor("primary"),
       contrastText: "#FFFFFF",
       accent: getRandomColor("secondary"),
-    },
+    } as any,
     secondary: {
       main: "#FFFFFF",
       contrastText: "#02182b",
