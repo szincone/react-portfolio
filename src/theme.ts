@@ -1,5 +1,5 @@
 import { createMuiTheme } from "@material-ui/core/styles";
-import './material-ui-augment';
+import './material-ui-augment.d.ts';
 
 // breakpoint values {xs: 0, sm: 600, md: 960, lg: 1280, xl: 1920}
 type ColorType = 'primary' | 'secondary' | 'background';
