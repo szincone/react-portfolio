@@ -30,7 +30,7 @@ const Routes: React.FC<RoutesProps> = ({ person, urls, classes }) => {
   const location = useLocation();
   return (
     <Grid className={classes.containerWidth}>
-      <AnimatePresence mode="wait">
+      <AnimatePresence exitBeforeEnter>
         <Switch location={location} key={location.pathname}>
           <Route exact path="/">
             <>
