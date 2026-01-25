@@ -1,6 +1,7 @@
 import React from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { Button, Grid, Link, withStyles } from "@material-ui/core";
+import { motion } from "framer-motion";
 import { ButtonLinksProps, StylesFunction } from "../../types";
 
 const styles: StylesFunction = (theme) => ({
@@ -22,24 +23,48 @@ const ButtonLinks: React.FC<ButtonLinksProps> = (props) => {
   return (
     <Grid>
       <Link target="_blank" underline="none" href={urls.github}>
-        <Button className={classes.button}>
-          <i className="fa fa-github" aria-hidden="true" />
-        </Button>
+        <motion.div
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          style={{ display: "inline-block" }}
+        >
+          <Button className={classes.button}>
+            <i className="fa fa-github" aria-hidden="true" />
+          </Button>
+        </motion.div>
       </Link>
       <Link target="_blank" underline="none" href={urls.linkedin}>
-        <Button className={classes.button}>
-          <i className="fa fa-linkedin" aria-hidden="true" />
-        </Button>
+        <motion.div
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          style={{ display: "inline-block" }}
+        >
+          <Button className={classes.button}>
+            <i className="fa fa-linkedin" aria-hidden="true" />
+          </Button>
+        </motion.div>
       </Link>
       <Link target="_blank" underline="none" href={urls.email}>
-        <Button className={classes.button}>
-          <i className="fa fa-envelope" aria-hidden="true" />
-        </Button>
+        <motion.div
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          style={{ display: "inline-block" }}
+        >
+          <Button className={classes.button}>
+            <i className="fa fa-envelope" aria-hidden="true" />
+          </Button>
+        </motion.div>
       </Link>
       <Link component={RouterLink} underline="none" to="/about">
-        <Button className={classes.button}>
-          <i className="fa fa-user" aria-hidden="true" />
-        </Button>
+        <motion.div
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          style={{ display: "inline-block" }}
+        >
+          <Button className={classes.button}>
+            <i className="fa fa-user" aria-hidden="true" />
+          </Button>
+        </motion.div>
       </Link>
     </Grid>
   );

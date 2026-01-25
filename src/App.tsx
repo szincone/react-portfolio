@@ -1,6 +1,7 @@
 import React from "react";
-import { Route, BrowserRouter as Router } from "react-router-dom";
+import { Route, BrowserRouter as Router, Switch, useLocation } from "react-router-dom";
 import { Grid, withStyles } from "@material-ui/core";
+import { AnimatePresence } from "framer-motion";
 import { AboutPage, ButtonLinks, HomePage, Particle } from "./components";
 import { AppProps, RoutesProps, StylesFunction, Person, Urls } from "./types";
 
@@ -25,21 +26,24 @@ const styles: StylesFunction = (theme) => ({
   },
 });
 
-const Routes: React.FC<RoutesProps> = ({ person, urls, classes }) => (
-  <Grid className={classes.containerWidth}>
-    <Route
-      exact
-      path="/"
-      render={(props: any) => <HomePage {...props} person={person} />}
-    />
-    <Route
-      exact
-      path="/"
-      render={(props: any) => <ButtonLinks {...props} urls={urls} />}
-    />
-    <Route path="/about" component={AboutPage} />
-  </Grid>
-);
+const Routes: React.FC<RoutesProps> = ({ person, urls, classes }) => {
+  const location = useLocation();
+  return (
+    <Grid className={classes.containerWidth}>
+      <AnimatePresence mode="wait">
+        <Switch location={location} key={location.pathname}>
+          <Route exact path="/">
+            <>
+              <HomePage person={person} />
+              <ButtonLinks urls={urls} />
+            </>
+          </Route>
+          <Route path="/about" component={AboutPage} />
+        </Switch>
+      </AnimatePresence>
+    </Grid>
+  );
+};
 
 const App: React.FC<AppProps> = ({ classes }) => {
   const person: Person = {
