@@ -18,49 +18,39 @@ const styles: StylesFunction = (theme) => ({
   },
 });
 
+const buttonAnimationProps = {
+  whileHover: { scale: 1.1 },
+  whileTap: { scale: 0.9 },
+  style: { display: "inline-block" as const },
+};
+
 const ButtonLinks: React.FC<ButtonLinksProps> = (props) => {
   const { classes, urls } = props;
   return (
     <Grid>
       <Link target="_blank" underline="none" href={urls.github}>
-        <motion.div
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          style={{ display: "inline-block" }}
-        >
+        <motion.div {...buttonAnimationProps}>
           <Button className={classes.button}>
             <i className="fa fa-github" aria-hidden="true" />
           </Button>
         </motion.div>
       </Link>
       <Link target="_blank" underline="none" href={urls.linkedin}>
-        <motion.div
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          style={{ display: "inline-block" }}
-        >
+        <motion.div {...buttonAnimationProps}>
           <Button className={classes.button}>
             <i className="fa fa-linkedin" aria-hidden="true" />
           </Button>
         </motion.div>
       </Link>
       <Link target="_blank" underline="none" href={urls.email}>
-        <motion.div
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          style={{ display: "inline-block" }}
-        >
+        <motion.div {...buttonAnimationProps}>
           <Button className={classes.button}>
             <i className="fa fa-envelope" aria-hidden="true" />
           </Button>
         </motion.div>
       </Link>
       <Link component={RouterLink} underline="none" to="/about">
-        <motion.div
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-          style={{ display: "inline-block" }}
-        >
+        <motion.div {...buttonAnimationProps}>
           <Button className={classes.button}>
             <i className="fa fa-user" aria-hidden="true" />
           </Button>
