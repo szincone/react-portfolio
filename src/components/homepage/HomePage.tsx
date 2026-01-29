@@ -68,9 +68,8 @@ const pageVariants = {
 
 const HomePage: React.FC<HomePageProps> = ({ classes, person }) => {
   return (
-    <Grid 
+    <motion.div 
       className={classes.homepageWraper}
-      component={motion.div}
       initial="hidden"
       animate="visible"
       exit="exit"
@@ -91,7 +90,7 @@ const HomePage: React.FC<HomePageProps> = ({ classes, person }) => {
           {person.email}
         </Typography>
       </Grid>
-    </Grid>
+    </motion.div>
   );
 };
 

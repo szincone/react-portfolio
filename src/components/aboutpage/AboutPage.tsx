@@ -84,9 +84,8 @@ const pageVariants = {
 
 const AboutPage: React.FC<AboutPageProps> = ({ classes }) => {
   return (
-    <Grid 
+    <motion.div 
       className={classes.aboutPageDiv}
-      component={motion.div}
       initial="hidden"
       animate="visible"
       exit="exit"
@@ -116,7 +115,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ classes }) => {
           <i className="fa fa-home" aria-hidden="true" />
         </Button>
       </Link>
-    </Grid>
+    </motion.div>
   );
 };
 
