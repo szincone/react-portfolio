@@ -19,7 +19,6 @@ const styles: StylesFunction = (theme) => ({
     WebkitTextFillColor: "transparent",
     backgroundClip: "text",
     marginBottom: "1rem",
-    textShadow: "0 4px 20px rgba(0, 212, 255, 0.3)",
   },
   jobTitleDiv: {
     display: "flex",

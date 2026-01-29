@@ -22,7 +22,6 @@ const styles: StylesFunction = (theme) => ({
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
     backgroundClip: "text",
-    textShadow: "0 4px 20px rgba(0, 212, 255, 0.3)",
   },
   contentText: {
     fontSize: "1.25rem",
