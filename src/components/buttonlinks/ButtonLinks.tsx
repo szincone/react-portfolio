@@ -6,15 +6,35 @@ import { ButtonLinksProps, StylesFunction } from "../../types";
 
 const styles: StylesFunction = (theme) => ({
   button: {
-    margin: "0.5rem",
-    padding: "0.5rem 2rem",
-    fontSize: "2rem",
-    background: (theme.palette.primary as any).accent,
+    margin: "0.6rem",
+    padding: "0.9rem 2.2rem",
+    fontSize: "1.8rem",
+    background: "linear-gradient(135deg, rgba(0, 212, 255, 0.15) 0%, rgba(255, 0, 110, 0.15) 100%)",
     color: theme.palette.secondary.main,
-    borderRadius: "35px",
-    border: `2px solid ${theme.palette.secondary.main}`,
-    zIndex: "1",
-    cursor: "pointer",
+    borderRadius: "60px",
+    border: "2px solid rgba(0, 212, 255, 0.4)",
+    backdropFilter: "blur(10px)",
+    boxShadow: "0 4px 20px rgba(0, 212, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)",
+    transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+    position: "relative",
+    overflow: "hidden",
+    "&:hover": {
+      background: "linear-gradient(135deg, rgba(0, 212, 255, 0.25) 0%, rgba(255, 0, 110, 0.25) 100%)",
+      border: "2px solid rgba(0, 212, 255, 0.6)",
+      boxShadow: "0 8px 30px rgba(0, 212, 255, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)",
+      transform: "translateY(-2px)",
+    },
+    "&:active": {
+      transform: "translateY(0)",
+      boxShadow: "0 4px 15px rgba(0, 212, 255, 0.3)",
+    },
+    "& i": {
+      position: "relative",
+      zIndex: 1,
+    },
+  },
+  buttonContainer: {
+    marginTop: "2rem",
   },
 });
 
@@ -27,7 +47,7 @@ const buttonAnimationProps = {
 const ButtonLinks: React.FC<ButtonLinksProps> = (props) => {
   const { classes, urls } = props;
   return (
-    <Grid>
+    <Grid className={classes.buttonContainer}>
       <Link target="_blank" underline="none" href={urls.github}>
         <motion.div {...buttonAnimationProps}>
           <Button className={classes.button}>
