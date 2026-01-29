@@ -1,6 +1,7 @@
 import React from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { Button, Grid, Link, Typography, withStyles } from "@material-ui/core";
+import { motion } from "framer-motion";
 import { AboutPageProps, StylesFunction } from "../../types";
 
 const styles: StylesFunction = (theme) => ({
@@ -28,9 +29,30 @@ const styles: StylesFunction = (theme) => ({
   },
 });
 
+const pageVariants = {
+  hidden: { opacity: 0, x: 100 },
+  visible: { 
+    opacity: 1, 
+    x: 0,
+    transition: { duration: 0.5, ease: "easeOut" }
+  },
+  exit: { 
+    opacity: 0, 
+    x: 100,
+    transition: { duration: 0.3, ease: "easeIn" }
+  }
+};
+
 const AboutPage: React.FC<AboutPageProps> = ({ classes }) => {
   return (
-    <Grid className={classes.aboutPageDiv}>
+    <Grid 
+      className={classes.aboutPageDiv}
+      component={motion.div}
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      variants={pageVariants}
+    >
       <Typography variant="h1" className={classes.mainTitle} color="secondary">
         About Me
       </Typography>
