@@ -10,7 +10,7 @@ const styles: StylesFunction = (theme) => ({
     textAlign: "center",
     margin: "0 auto",
     fontSize: "62.5%",
-    fontFamily: '"Oswald", sans-serif',
+    fontFamily: (theme.typography as any).fontFamily,
     background: theme.palette.primary.main,
     color: theme.palette.secondary.main,
     display: "flex",
@@ -18,11 +18,15 @@ const styles: StylesFunction = (theme) => ({
     alignItems: "center",
     minHeight: "100vh",
     padding: theme.spacing(2),
+    position: "relative",
+    overflow: "hidden",
   },
   containerWidth: {
-    maxWidth: "800px",
+    maxWidth: "900px",
     width: "100%",
-    padding: theme.spacing(2),
+    padding: theme.spacing(3),
+    position: "relative",
+    zIndex: 2,
   },
 });
 

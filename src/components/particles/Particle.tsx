@@ -8,66 +8,55 @@ const Particle: React.FC = () => {
         params={{
           particles: {
             number: {
-              value: 99,
+              value: 80,
               density: {
                 enable: true,
-                value_area: 800,
+                value_area: 1000,
               },
             },
-            color: { value: '#fff' },
+            color: { value: '#00d4ff' },
             shape: {
               type: 'circle',
               stroke: {
                 width: 0,
                 color: '#000000',
               },
-              polygon: { nb_sides: 5 },
-              image: {
-                src: 'img/github.svg',
-                width: 100,
-                height: 100,
-              },
             },
             opacity: {
-              value: 0.6,
+              value: 0.3,
               random: true,
               anim: {
-                enable: false,
-                speed: 1,
+                enable: true,
+                speed: 0.5,
                 opacity_min: 0.1,
                 sync: false,
               },
             },
             size: {
-              value: 8,
+              value: 3,
               random: true,
               anim: {
-                enable: false,
-                speed: 40,
-                size_min: 0.1,
+                enable: true,
+                speed: 2,
+                size_min: 0.5,
                 sync: false,
               },
             },
             line_linked: {
-              enable: false,
-              distance: 500,
-              color: '#ffffff',
-              opacity: 0.4,
-              width: 2,
+              enable: true,
+              distance: 150,
+              color: '#00d4ff',
+              opacity: 0.15,
+              width: 1,
             },
             move: {
               enable: true,
-              speed: 2,
-              direction: 'bottom',
-              random: false,
+              speed: 1,
+              direction: 'none',
+              random: true,
               straight: false,
               out_mode: 'out',
               bounce: false,
-              attract: {
-                enable: false,
-                rotateX: 600,
-                rotateY: 1200,
-              },
             },
           },
           interactivity: {
@@ -75,31 +64,20 @@ const Particle: React.FC = () => {
             events: {
               onhover: {
                 enable: true,
-                mode: 'bubble',
+                mode: 'grab',
               },
               onclick: {
                 enable: true,
-                mode: 'repulse',
+                mode: 'push',
               },
               resize: true,
             },
             modes: {
               grab: {
-                distance: 400,
-                line_linked: { opacity: 0.5 },
-              },
-              bubble: {
-                distance: 400,
-                size: 4,
-                duration: 0.3,
-                opacity: 1,
-              },
-              repulse: {
                 distance: 200,
-                duration: 0.4,
+                line_linked: { opacity: 0.3 },
               },
               push: { particles_nb: 4 },
-              remove: { particles_nb: 2 },
             },
           },
           retina_detect: true,
@@ -108,6 +86,9 @@ const Particle: React.FC = () => {
           position: 'fixed',
           top: '0',
           left: '0',
+          width: '100%',
+          height: '100%',
+          zIndex: 0,
         }}
       />
     </>
