@@ -4,7 +4,7 @@
 This is a personal portfolio website built with React, TypeScript, Material-UI, and Particle.js. It showcases professional information, projects, and provides an interactive user experience with particle effects and smooth animations.
 
 ## Tech Stack
-- **Frontend Framework**: React 16.8.1 with TypeScript
+- **Frontend Framework**: React v16.8.1 with TypeScript
 - **UI Library**: Material-UI v4.12.4
 - **Animation**: Framer Motion v4.1.17
 - **Effects**: react-particles-js v2.3.0
