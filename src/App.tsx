@@ -2,7 +2,7 @@ import React from "react";
 import { Route, BrowserRouter as Router, Switch, useLocation } from "react-router-dom";
 import { Grid, withStyles } from "@material-ui/core";
 import { AnimatePresence } from "framer-motion";
-import { AboutPage, ButtonLinks, HomePage, Particle } from "./components";
+import { AboutPage, ButtonLinks, FloatingAstronaut, HomePage, Particle } from "./components";
 import { AppProps, RoutesProps, StylesFunction, Person, Urls } from "./types";
 
 const styles: StylesFunction = (theme) => ({
@@ -66,6 +66,7 @@ const App: React.FC<AppProps> = ({ classes }) => {
         <Routes person={person} urls={urls} classes={classes} />
       </Router>
       <Particle />
+      <FloatingAstronaut />
     </Grid>
   );
 };
