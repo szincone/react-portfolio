@@ -40,7 +40,7 @@ const FloatingAstronaut: React.FC = () => {
     visible: {
       x: '120vw',
       y: '-20vh',
-      opacity: [0, 1, 1, 1, 0],
+      opacity: [0, 0.6, 0.6, 0.6, 0],
       rotate: 15,
       scale: 1,
       transition: {
@@ -70,106 +70,40 @@ const FloatingAstronaut: React.FC = () => {
           variants={astronautVariants}
           style={{
             position: 'fixed',
-            width: '150px',
-            height: '150px',
+            width: '60px',
+            height: '60px',
             zIndex: 0,
             pointerEvents: 'none',
           }}
         >
-          {/* Simple Astronaut SVG */}
+          {/* Simple Professional Astronaut SVG - Monochromatic */}
           <svg
-            width="150"
-            height="150"
+            width="60"
+            height="60"
             viewBox="0 0 200 200"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            {/* Helmet/Head */}
-            <circle cx="100" cy="70" r="45" fill="#E8F4F8" opacity="0.9" />
-            <circle cx="100" cy="70" r="42" fill="#4A90E2" opacity="0.3" />
+            {/* Helmet */}
+            <circle cx="100" cy="80" r="40" fill="#FFFFFF" opacity="0.8" />
+            <circle cx="100" cy="80" r="35" fill="#E8E8E8" opacity="0.6" />
             
-            {/* Visor reflection */}
-            <ellipse cx="90" cy="60" rx="15" ry="20" fill="#FFFFFF" opacity="0.6" />
-            
-            {/* Face shield */}
-            <path
-              d="M 70 70 Q 100 90 130 70"
-              stroke="#1E3A5F"
-              strokeWidth="3"
-              fill="none"
-              opacity="0.4"
-            />
+            {/* Visor */}
+            <ellipse cx="100" cy="80" rx="25" ry="20" fill="#D0D0D0" opacity="0.5" />
             
             {/* Body */}
-            <ellipse cx="100" cy="130" rx="35" ry="45" fill="#F0F0F0" />
+            <rect x="75" y="115" width="50" height="60" rx="8" fill="#FFFFFF" opacity="0.8" />
             
-            {/* Chest panel */}
-            <rect x="85" y="110" width="30" height="35" rx="3" fill="#4A90E2" opacity="0.6" />
+            {/* Chest detail */}
+            <rect x="85" y="125" width="30" height="35" rx="4" fill="#E8E8E8" opacity="0.6" />
             
             {/* Arms */}
-            <ellipse 
-              cx="65" 
-              cy="125" 
-              rx="12" 
-              ry="35" 
-              fill="#F0F0F0"
-              transform="rotate(-20 65 125)"
-            />
-            <ellipse 
-              cx="135" 
-              cy="125" 
-              rx="12" 
-              ry="35" 
-              fill="#F0F0F0"
-              transform="rotate(20 135 125)"
-            />
-            
-            {/* Gloves */}
-            <circle cx="60" cy="150" r="10" fill="#4A90E2" opacity="0.8" />
-            <circle cx="140" cy="150" r="10" fill="#4A90E2" opacity="0.8" />
+            <rect x="55" y="120" width="15" height="40" rx="7" fill="#FFFFFF" opacity="0.7" />
+            <rect x="130" y="120" width="15" height="40" rx="7" fill="#FFFFFF" opacity="0.7" />
             
             {/* Legs */}
-            <rect x="80" y="165" width="15" height="25" rx="7" fill="#F0F0F0" />
-            <rect x="105" y="165" width="15" height="25" rx="7" fill="#F0F0F0" />
-            
-            {/* Boots */}
-            <ellipse cx="87" cy="190" rx="12" ry="8" fill="#1E3A5F" />
-            <ellipse cx="112" cy="190" rx="12" ry="8" fill="#1E3A5F" />
-            
-            {/* Backpack/Life support */}
-            <rect x="90" y="115" width="20" height="30" rx="3" fill="#4A90E2" opacity="0.7" />
-            <circle cx="95" cy="125" r="3" fill="#00D4FF" />
-            <circle cx="105" cy="125" r="3" fill="#00D4FF" />
-            
-            {/* Antenna */}
-            <line x1="100" y1="25" x2="100" y2="35" stroke="#FFD700" strokeWidth="2" />
-            <circle cx="100" cy="23" r="3" fill="#FFD700" />
-            
-            {/* Stars around astronaut for effect */}
-            <circle cx="30" cy="40" r="2" fill="#FFD700" opacity="0.8">
-              <animate
-                attributeName="opacity"
-                values="0.8;0.3;0.8"
-                dur="2s"
-                repeatCount="indefinite"
-              />
-            </circle>
-            <circle cx="170" cy="100" r="2" fill="#00D4FF" opacity="0.8">
-              <animate
-                attributeName="opacity"
-                values="0.8;0.3;0.8"
-                dur="3s"
-                repeatCount="indefinite"
-              />
-            </circle>
-            <circle cx="50" cy="150" r="1.5" fill="#FFFFFF" opacity="0.8">
-              <animate
-                attributeName="opacity"
-                values="0.8;0.3;0.8"
-                dur="2.5s"
-                repeatCount="indefinite"
-              />
-            </circle>
+            <rect x="80" y="170" width="15" height="25" rx="7" fill="#FFFFFF" opacity="0.8" />
+            <rect x="105" y="170" width="15" height="25" rx="7" fill="#FFFFFF" opacity="0.8" />
           </svg>
         </motion.div>
       )}
