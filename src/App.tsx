@@ -11,7 +11,7 @@ const styles: StylesFunction = (theme) => ({
     margin: "0 auto",
     fontSize: "62.5%",
     fontFamily: (theme.typography as any).fontFamily,
-    background: theme.palette.primary.main,
+    background: `linear-gradient(135deg, ${theme.palette.primary.dark} 0%, ${theme.palette.primary.main} 100%)`,
     color: theme.palette.secondary.main,
     display: "flex",
     flexDirection: "column",
