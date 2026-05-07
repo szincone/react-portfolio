@@ -76,6 +76,13 @@ const ButtonLinks: React.FC<ButtonLinksProps> = (props) => {
           </Button>
         </motion.div>
       </Link>
+      <Link target="_blank" rel="noopener" underline="none" href={urls.resume} aria-label="Resume">
+        <motion.div {...buttonAnimationProps}>
+          <Button className={classes.button}>
+            <i className="fa fa-file-text" aria-hidden="true" />
+          </Button>
+        </motion.div>
+      </Link>
     </Grid>
   );
 };

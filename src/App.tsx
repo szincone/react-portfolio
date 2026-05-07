@@ -59,6 +59,7 @@ const App: React.FC<AppProps> = ({ classes }) => {
     github: "https://github.com/szincone/",
     linkedin: "https://www.linkedin.com/in/szincone/",
     email: "mailto:sawyerzincone@gmail.com",
+    resume: `${process.env.PUBLIC_URL}/resume.pdf`,
   };
   return (
     <Grid className={classes.appContainer}>
