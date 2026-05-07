@@ -10,6 +10,7 @@ export interface Urls {
   github: string;
   linkedin: string;
   email: string;
+  resume: string;
 }
 
 export interface StylesFunction {
