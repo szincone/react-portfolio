@@ -1,6 +1,7 @@
 import React from "react";
 import { Grid, Typography, withStyles } from "@material-ui/core";
 import { motion } from "framer-motion";
+import { paletteColors, withAlpha } from "../../theme";
 import { HomePageProps, StylesFunction } from "../../types";
 
 const styles: StylesFunction = (theme) => ({
@@ -14,7 +15,7 @@ const styles: StylesFunction = (theme) => ({
     fontFamily: (theme.typography as any).headerFamily,
     fontWeight: 800,
     wordBreak: "break-word",
-    background: "linear-gradient(135deg, #ffffff 0%, #00d4ff 100%)",
+    background: `linear-gradient(135deg, #ffffff 0%, ${paletteColors.secondary.main} 100%)`,
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
     backgroundClip: "text",
@@ -30,19 +31,19 @@ const styles: StylesFunction = (theme) => ({
     padding: "0.75rem 1.5rem",
     fontWeight: 600,
     wordBreak: "break-word",
-    background: "linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(255, 0, 110, 0.1) 100%)",
+    background: `linear-gradient(135deg, ${withAlpha(paletteColors.secondary.main, 0.1)} 0%, ${withAlpha(paletteColors.accent.main, 0.1)} 100%)`,
     borderRadius: "50px",
-    border: "2px solid rgba(0, 212, 255, 0.3)",
+    border: `2px solid ${withAlpha(paletteColors.secondary.main, 0.3)}`,
     backdropFilter: "blur(10px)",
-    boxShadow: "0 8px 32px rgba(0, 212, 255, 0.2)",
+    boxShadow: `0 8px 32px ${withAlpha(paletteColors.secondary.main, 0.2)}`,
   },
   divider: {
     width: "4px",
     height: "4px",
     borderRadius: "50%",
-    background: "linear-gradient(135deg, #00d4ff 0%, #ff006e 100%)",
+    background: `linear-gradient(135deg, ${paletteColors.secondary.main} 0%, ${paletteColors.accent.main} 100%)`,
     margin: "0 1rem",
-    boxShadow: "0 0 12px rgba(0, 212, 255, 0.6)",
+    boxShadow: `0 0 12px ${withAlpha(paletteColors.secondary.main, 0.6)}`,
   },
   email: {
     fontSize: "1.3rem",

@@ -2,6 +2,7 @@ import React from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { Button, Grid, Link, withStyles } from "@material-ui/core";
 import { motion } from "framer-motion";
+import { paletteColors, withAlpha } from "../../theme";
 import { ButtonLinksProps, StylesFunction } from "../../types";
 
 const styles: StylesFunction = (theme) => ({
@@ -9,24 +10,24 @@ const styles: StylesFunction = (theme) => ({
     margin: "0.6rem",
     padding: "0.9rem 2.2rem",
     fontSize: "1.8rem",
-    background: "linear-gradient(135deg, rgba(0, 212, 255, 0.15) 0%, rgba(255, 0, 110, 0.15) 100%)",
+    background: `linear-gradient(135deg, ${withAlpha(paletteColors.secondary.main, 0.15)} 0%, ${withAlpha(paletteColors.accent.main, 0.15)} 100%)`,
     color: theme.palette.secondary.main,
     borderRadius: "60px",
-    border: "2px solid rgba(0, 212, 255, 0.4)",
+    border: `2px solid ${withAlpha(paletteColors.secondary.main, 0.4)}`,
     backdropFilter: "blur(10px)",
-    boxShadow: "0 4px 20px rgba(0, 212, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)",
+    boxShadow: `0 4px 20px ${withAlpha(paletteColors.secondary.main, 0.2)}, inset 0 1px 0 rgba(255, 255, 255, 0.1)`,
     transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
     position: "relative",
     overflow: "hidden",
     "&:hover": {
-      background: "linear-gradient(135deg, rgba(0, 212, 255, 0.25) 0%, rgba(255, 0, 110, 0.25) 100%)",
-      border: "2px solid rgba(0, 212, 255, 0.6)",
-      boxShadow: "0 8px 30px rgba(0, 212, 255, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)",
+      background: `linear-gradient(135deg, ${withAlpha(paletteColors.secondary.main, 0.25)} 0%, ${withAlpha(paletteColors.accent.main, 0.25)} 100%)`,
+      border: `2px solid ${withAlpha(paletteColors.secondary.main, 0.6)}`,
+      boxShadow: `0 8px 30px ${withAlpha(paletteColors.secondary.main, 0.4)}, inset 0 1px 0 rgba(255, 255, 255, 0.2)`,
       transform: "translateY(-2px)",
     },
     "&:active": {
       transform: "translateY(0)",
-      boxShadow: "0 4px 15px rgba(0, 212, 255, 0.3)",
+      boxShadow: `0 4px 15px ${withAlpha(paletteColors.secondary.main, 0.3)}`,
     },
     "& i": {
       position: "relative",
