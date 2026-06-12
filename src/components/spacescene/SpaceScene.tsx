@@ -283,90 +283,137 @@ const SpaceScene: React.FC = () => {
       });
     };
 
-    // The basketball planet: an orange gas(?) giant with seams and a ring,
-    // plus a small moon in orbit
+    // The basketball planet: a shaded orange sphere with rotating seams,
+    // an atmospheric glow, a ring band, and a small moon in orbit
     const drawBasketballPlanet = (t: number) => {
       const radius = Math.max(26, Math.min(52, width * 0.038));
       const cx = width * 0.84 + parallaxX * 8;
       const cy = height * 0.2 + (reducedMotion ? 0 : Math.sin(t * 0.25) * 8) + parallaxY * 6;
       const ringTilt = -0.38;
-      const ringRx = radius * 1.85;
-      const ringRy = radius * 0.5;
+      const ringRx = radius * 1.9;
+      const ringRy = radius * 0.52;
 
       const moonAngle = t * 0.45;
-      const moonX = cx + Math.cos(moonAngle) * radius * 2.4;
-      const moonY = cy + Math.sin(moonAngle) * radius * 0.7;
+      const moonX = cx + Math.cos(moonAngle) * radius * 2.5;
+      const moonY = cy + Math.sin(moonAngle) * radius * 0.75;
       const moonBehind = Math.sin(moonAngle) < 0;
 
       const drawMoon = () => {
-        ctx.globalAlpha = 0.55;
-        ctx.fillStyle = '#cfd8dc';
+        const moonR = radius * 0.16;
+        const moonGradient = ctx.createRadialGradient(
+          moonX - moonR * 0.4, moonY - moonR * 0.4, moonR * 0.15,
+          moonX, moonY, moonR,
+        );
+        moonGradient.addColorStop(0, '#eef2f5');
+        moonGradient.addColorStop(1, '#8d9aa6');
+        ctx.globalAlpha = 0.8;
+        ctx.fillStyle = moonGradient;
         ctx.beginPath();
-        ctx.arc(moonX, moonY, radius * 0.16, 0, Math.PI * 2);
+        ctx.arc(moonX, moonY, moonR, 0, Math.PI * 2);
         ctx.fill();
         ctx.globalAlpha = 1;
       };
 
+      const strokeRing = (start: number, end: number, alpha: number) => {
+        const ringGradient = ctx.createLinearGradient(cx - ringRx, cy, cx + ringRx, cy);
+        ringGradient.addColorStop(0, withAlpha(accent, 0));
+        ringGradient.addColorStop(0.35, withAlpha(accent, alpha));
+        ringGradient.addColorStop(0.65, withAlpha(accent, alpha));
+        ringGradient.addColorStop(1, withAlpha(accent, 0.1 * alpha));
+        // soft outer pass, then a brighter core line
+        ctx.strokeStyle = ringGradient;
+        ctx.lineWidth = 6;
+        ctx.globalAlpha = 0.3;
+        ctx.beginPath();
+        ctx.ellipse(cx, cy, ringRx, ringRy, ringTilt, start, end);
+        ctx.stroke();
+        ctx.globalAlpha = 1;
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.ellipse(cx, cy, ringRx, ringRy, ringTilt, start, end);
+        ctx.stroke();
+      };
+
       ctx.save();
-      ctx.globalAlpha = 0.85;
+
+      // atmospheric glow
+      const halo = ctx.createRadialGradient(cx, cy, radius * 0.8, cx, cy, radius * 2.2);
+      halo.addColorStop(0, 'rgba(255, 145, 60, 0.18)');
+      halo.addColorStop(1, 'rgba(255, 145, 60, 0)');
+      ctx.fillStyle = halo;
+      ctx.beginPath();
+      ctx.arc(cx, cy, radius * 2.2, 0, Math.PI * 2);
+      ctx.fill();
 
       if (moonBehind) drawMoon();
-
-      // back half of the ring
-      ctx.strokeStyle = withAlpha(accent, 0.4);
-      ctx.lineWidth = 2.5;
-      ctx.beginPath();
-      ctx.ellipse(cx, cy, ringRx, ringRy, ringTilt, Math.PI, Math.PI * 2);
-      ctx.stroke();
+      strokeRing(Math.PI, Math.PI * 2, 0.45);
 
       // ball body
       const bodyGradient = ctx.createRadialGradient(
-        cx - radius * 0.35,
-        cy - radius * 0.35,
-        radius * 0.1,
-        cx,
-        cy,
-        radius,
+        cx - radius * 0.4, cy - radius * 0.4, radius * 0.1,
+        cx, cy, radius * 1.05,
       );
-      bodyGradient.addColorStop(0, '#ff9f43');
-      bodyGradient.addColorStop(0.65, '#e07020');
-      bodyGradient.addColorStop(1, '#9c4a0e');
+      bodyGradient.addColorStop(0, '#ffc078');
+      bodyGradient.addColorStop(0.4, '#f08a2e');
+      bodyGradient.addColorStop(0.75, '#cf5f12');
+      bodyGradient.addColorStop(1, '#7e3a08');
       ctx.fillStyle = bodyGradient;
       ctx.beginPath();
       ctx.arc(cx, cy, radius, 0, Math.PI * 2);
       ctx.fill();
 
-      // basketball seams, slowly rotating
+      // seams + shading, clipped to the ball
       ctx.save();
       ctx.beginPath();
       ctx.arc(cx, cy, radius, 0, Math.PI * 2);
       ctx.clip();
+
+      // slowly rotating basketball seams
+      ctx.save();
       ctx.translate(cx, cy);
-      ctx.rotate(reducedMotion ? 0.4 : t * 0.06);
-      ctx.strokeStyle = 'rgba(70, 30, 5, 0.55)';
-      ctx.lineWidth = 1.8;
+      ctx.rotate(reducedMotion ? 0.4 : t * 0.05);
+      ctx.strokeStyle = 'rgba(85, 38, 8, 0.5)';
+      ctx.lineWidth = Math.max(1.5, radius * 0.05);
+      ctx.lineCap = 'round';
       ctx.beginPath();
       ctx.moveTo(-radius, 0);
-      ctx.lineTo(radius, 0);
+      ctx.quadraticCurveTo(0, radius * 0.14, radius, 0);
       ctx.stroke();
       ctx.beginPath();
-      ctx.ellipse(0, 0, radius * 0.35, radius, 0, 0, Math.PI * 2);
+      ctx.ellipse(0, 0, radius * 0.3, radius, 0, 0, Math.PI * 2);
       ctx.stroke();
       ctx.beginPath();
-      ctx.ellipse(-radius * 1.15, 0, radius, radius, 0, -0.6, 0.6);
+      ctx.ellipse(-radius * 1.35, 0, radius * 1.05, radius * 1.45, 0, -0.5, 0.5);
       ctx.stroke();
       ctx.beginPath();
-      ctx.ellipse(radius * 1.15, 0, radius, radius, 0, Math.PI - 0.6, Math.PI + 0.6);
+      ctx.ellipse(radius * 1.35, 0, radius * 1.05, radius * 1.45, 0, Math.PI - 0.5, Math.PI + 0.5);
       ctx.stroke();
       ctx.restore();
 
-      // front half of the ring
-      ctx.strokeStyle = withAlpha(accent, 0.55);
-      ctx.lineWidth = 2.5;
-      ctx.beginPath();
-      ctx.ellipse(cx, cy, ringRx, ringRy, ringTilt, 0, Math.PI);
-      ctx.stroke();
+      // terminator: darken the limb away from the light
+      const shade = ctx.createRadialGradient(
+        cx - radius * 0.45, cy - radius * 0.45, radius * 0.35,
+        cx - radius * 0.45, cy - radius * 0.45, radius * 1.8,
+      );
+      shade.addColorStop(0, 'rgba(25, 12, 35, 0)');
+      shade.addColorStop(0.6, 'rgba(25, 12, 35, 0.12)');
+      shade.addColorStop(1, 'rgba(25, 12, 35, 0.55)');
+      ctx.fillStyle = shade;
+      ctx.fillRect(cx - radius, cy - radius, radius * 2, radius * 2);
 
+      // specular highlight
+      const spec = ctx.createRadialGradient(
+        cx - radius * 0.45, cy - radius * 0.5, 0,
+        cx - radius * 0.45, cy - radius * 0.5, radius * 0.55,
+      );
+      spec.addColorStop(0, 'rgba(255, 255, 255, 0.3)');
+      spec.addColorStop(1, 'rgba(255, 255, 255, 0)');
+      ctx.fillStyle = spec;
+      ctx.fillRect(cx - radius, cy - radius, radius * 2, radius * 2);
+
+      ctx.restore();
+
+      strokeRing(0, Math.PI, 0.6);
       if (!moonBehind) drawMoon();
 
       ctx.restore();
