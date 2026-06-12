@@ -2,7 +2,8 @@ import React from "react";
 import { Route, BrowserRouter as Router, Switch, useLocation } from "react-router-dom";
 import { Grid, withStyles } from "@material-ui/core";
 import { AnimatePresence } from "framer-motion";
-import { AboutPage, ButtonLinks, FloatingAstronaut, HomePage, Particle } from "./components";
+import { AboutPage, ButtonLinks, HomePage, SpaceDrifter, SpaceScene } from "./components";
+import { paletteColors, withAlpha } from "./theme";
 import { AppProps, RoutesProps, StylesFunction, Person, Urls } from "./types";
 
 const styles: StylesFunction = (theme) => ({
@@ -11,7 +12,13 @@ const styles: StylesFunction = (theme) => ({
     margin: "0 auto",
     fontSize: "62.5%",
     fontFamily: (theme.typography as any).fontFamily,
-    background: `linear-gradient(135deg, ${theme.palette.primary.dark} 0%, ${theme.palette.primary.main} 100%)`,
+    // deep space backdrop: faint nebula glows over a dark gradient
+    background: [
+      `radial-gradient(ellipse 60% 45% at 18% 22%, ${withAlpha(paletteColors.secondary.main, 0.1)} 0%, transparent 100%)`,
+      `radial-gradient(ellipse 55% 40% at 82% 78%, ${withAlpha(paletteColors.accent.main, 0.09)} 0%, transparent 100%)`,
+      `radial-gradient(ellipse 45% 35% at 65% 8%, ${withAlpha(paletteColors.secondary.light, 0.06)} 0%, transparent 100%)`,
+      `linear-gradient(160deg, ${theme.palette.primary.dark} 0%, ${theme.palette.primary.main} 55%, ${theme.palette.primary.dark} 100%)`,
+    ].join(", "),
     color: theme.palette.secondary.main,
     display: "flex",
     flexDirection: "column",
@@ -66,8 +73,8 @@ const App: React.FC<AppProps> = ({ classes }) => {
       <Router>
         <Routes person={person} urls={urls} classes={classes} />
       </Router>
-      <Particle />
-      <FloatingAstronaut />
+      <SpaceScene />
+      <SpaceDrifter />
     </Grid>
   );
 };

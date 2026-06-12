@@ -2,6 +2,7 @@ import React from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { Button, Grid, Link, Typography, withStyles } from "@material-ui/core";
 import { motion } from "framer-motion";
+import { paletteColors, withAlpha } from "../../theme";
 import { AboutPageProps, StylesFunction } from "../../types";
 
 const styles: StylesFunction = (theme) => ({
@@ -18,7 +19,7 @@ const styles: StylesFunction = (theme) => ({
     fontSize: "3.5rem",
     fontWeight: 800,
     marginBottom: "2rem",
-    background: "linear-gradient(135deg, #ffffff 0%, #00d4ff 100%)",
+    background: `linear-gradient(135deg, #ffffff 0%, ${paletteColors.secondary.main} 100%)`,
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
     backgroundClip: "text",
@@ -31,38 +32,38 @@ const styles: StylesFunction = (theme) => ({
     fontWeight: 300,
   },
   highlight: {
-    color: "#00d4ff",
+    color: paletteColors.secondary.main,
     fontWeight: 500,
-    textShadow: "0 0 10px rgba(0, 212, 255, 0.3)",
+    textShadow: `0 0 10px ${withAlpha(paletteColors.secondary.main, 0.3)}`,
   },
   highlightPink: {
-    color: "#ff006e",
+    color: paletteColors.accent.main,
     fontWeight: 500,
-    textShadow: "0 0 10px rgba(255, 0, 110, 0.3)",
+    textShadow: `0 0 10px ${withAlpha(paletteColors.accent.main, 0.3)}`,
   },
   divider: {
     width: "6px",
     height: "6px",
     borderRadius: "50%",
-    background: "linear-gradient(135deg, #00d4ff 0%, #ff006e 100%)",
+    background: `linear-gradient(135deg, ${paletteColors.secondary.main} 0%, ${paletteColors.accent.main} 100%)`,
     margin: "2rem auto",
-    boxShadow: "0 0 20px rgba(0, 212, 255, 0.6)",
+    boxShadow: `0 0 20px ${withAlpha(paletteColors.secondary.main, 0.6)}`,
   },
   homeLinkButton: {
     marginTop: "3rem",
     padding: "0.9rem 2.2rem",
     fontSize: "1.8rem",
-    background: "linear-gradient(135deg, rgba(0, 212, 255, 0.15) 0%, rgba(255, 0, 110, 0.15) 100%)",
+    background: `linear-gradient(135deg, ${withAlpha(paletteColors.secondary.main, 0.15)} 0%, ${withAlpha(paletteColors.accent.main, 0.15)} 100%)`,
     color: theme.palette.secondary.main,
     borderRadius: "60px",
-    border: "2px solid rgba(0, 212, 255, 0.4)",
+    border: `2px solid ${withAlpha(paletteColors.secondary.main, 0.4)}`,
     backdropFilter: "blur(10px)",
-    boxShadow: "0 4px 20px rgba(0, 212, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)",
+    boxShadow: `0 4px 20px ${withAlpha(paletteColors.secondary.main, 0.2)}, inset 0 1px 0 rgba(255, 255, 255, 0.1)`,
     transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
     "&:hover": {
-      background: "linear-gradient(135deg, rgba(0, 212, 255, 0.25) 0%, rgba(255, 0, 110, 0.25) 100%)",
-      border: "2px solid rgba(0, 212, 255, 0.6)",
-      boxShadow: "0 8px 30px rgba(0, 212, 255, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2)",
+      background: `linear-gradient(135deg, ${withAlpha(paletteColors.secondary.main, 0.25)} 0%, ${withAlpha(paletteColors.accent.main, 0.25)} 100%)`,
+      border: `2px solid ${withAlpha(paletteColors.secondary.main, 0.6)}`,
+      boxShadow: `0 8px 30px ${withAlpha(paletteColors.secondary.main, 0.4)}, inset 0 1px 0 rgba(255, 255, 255, 0.2)`,
       transform: "translateY(-2px)",
     },
   },
@@ -107,8 +108,8 @@ const AboutPage: React.FC<AboutPageProps> = ({ classes }) => {
       <div className={classes.divider} />
       <Typography variant="h5" className={classes.contentText} color="secondary">
         When I&apos;m not <span className={classes.highlight}>programming</span>{" "}
-        I&apos;m usually playing guitar, working-out, or relaxing with my wife
-        and cats.
+        I&apos;m usually playing guitar, lifting weights, watching basketball,
+        or relaxing with my wife and our two cats.
       </Typography>
       <Link component={RouterLink} to="/" underline="none">
         <Button className={classes.homeLinkButton} type="submit">

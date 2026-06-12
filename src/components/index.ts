@@ -1,7 +1,7 @@
-import Particle from './particles/Particle';
+import SpaceScene from './spacescene/SpaceScene';
+import SpaceDrifter from './spacedrifter/SpaceDrifter';
 import HomePage from './homepage/HomePage';
 import AboutPage from './aboutpage/AboutPage';
 import ButtonLinks from './buttonlinks/ButtonLinks';
-import FloatingAstronaut from './astronaut/FloatingAstronaut';
 
-export { AboutPage, ButtonLinks, FloatingAstronaut, HomePage, Particle };
+export { AboutPage, ButtonLinks, HomePage, SpaceDrifter, SpaceScene };

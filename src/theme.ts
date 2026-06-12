@@ -3,9 +3,9 @@ import './material-ui-augment.d.ts';
 
 // breakpoint values {xs: 0, sm: 600, md: 960, lg: 1280, xl: 1920}
 
-// Define multiple professional color palettes
+// Space-themed color palettes — one is picked at random on each visit
 const colorPalettes = {
-  deepNavy: {
+  deepSpace: {
     primary: {
       main: "#1a1a2e",
       light: "#232344",
@@ -31,7 +31,7 @@ const colorPalettes = {
       card: "rgba(26, 26, 46, 0.8)",
     },
   },
-  cosmicPurple: {
+  nebula: {
     primary: {
       main: "#2d1b4e",
       light: "#3d2769",
@@ -57,7 +57,7 @@ const colorPalettes = {
       card: "rgba(45, 27, 78, 0.8)",
     },
   },
-  slateGrey: {
+  eventHorizon: {
     primary: {
       main: "#1e293b",
       light: "#334155",
@@ -83,7 +83,7 @@ const colorPalettes = {
       card: "rgba(30, 41, 59, 0.8)",
     },
   },
-  midnightTeal: {
+  aurora: {
     primary: {
       main: "#0d3d56",
       light: "#155270",
@@ -116,16 +116,27 @@ const paletteKeys = Object.keys(colorPalettes) as Array<keyof typeof colorPalett
 const randomPalette = paletteKeys[Math.floor(Math.random() * paletteKeys.length)];
 const modernColors = colorPalettes[randomPalette];
 
+// The palette chosen for this visit — shared with the canvas scene and styles
+export const paletteColors = modernColors;
+
+// Convert a #rrggbb hex color to an rgba() string
+export const withAlpha = (hex: string, alpha: number): string => {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+};
+
 export default createMuiTheme({
   typography: {
     useNextVariants: true,
     fontFamily: ['"Inter"', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif'].join(","),
-    body1: { 
+    body1: {
       color: modernColors.text.primary,
       fontSize: "1rem",
       lineHeight: 1.6,
     },
-    body2: { 
+    body2: {
       color: modernColors.text.secondary,
       fontSize: "0.95rem",
       lineHeight: 1.5,
@@ -150,7 +161,7 @@ export default createMuiTheme({
       fontWeight: 400,
       lineHeight: 1.6,
     },
-    headerFamily: ['"Inter"', '"Segoe UI"', 'sans-serif'].join(","),
+    headerFamily: ['"Space Grotesk"', '"Inter"', '"Segoe UI"', 'sans-serif'].join(","),
   } as any,
   palette: {
     primary: {
@@ -174,10 +185,10 @@ export default createMuiTheme({
   },
   shadows: [
     "none",
-    "0 2px 8px rgba(0, 212, 255, 0.1)",
-    "0 4px 16px rgba(0, 212, 255, 0.15)",
-    "0 8px 24px rgba(0, 212, 255, 0.2)",
-    "0 12px 32px rgba(0, 212, 255, 0.25)",
+    `0 2px 8px ${withAlpha(modernColors.secondary.main, 0.1)}`,
+    `0 4px 16px ${withAlpha(modernColors.secondary.main, 0.15)}`,
+    `0 8px 24px ${withAlpha(modernColors.secondary.main, 0.2)}`,
+    `0 12px 32px ${withAlpha(modernColors.secondary.main, 0.25)}`,
     ...Array(20).fill("0 12px 32px rgba(0, 0, 0, 0.3)"),
   ] as any,
 });
