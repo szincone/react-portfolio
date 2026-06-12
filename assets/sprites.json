@@ -163,11 +163,23 @@
    ],
    "fps": 0
   },
-  "cloud-1": {
+  "icon-page": {
    "frameCount": 1,
    "frames": [
     {
      "x": 86,
+     "y": 116,
+     "w": 24,
+     "h": 24
+    }
+   ],
+   "fps": 0
+  },
+  "cloud-1": {
+   "frameCount": 1,
+   "frames": [
+    {
+     "x": 112,
      "y": 116,
      "w": 60,
      "h": 18
@@ -179,7 +191,7 @@
    "frameCount": 1,
    "frames": [
     {
-     "x": 148,
+     "x": 174,
      "y": 116,
      "w": 66,
      "h": 15

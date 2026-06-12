@@ -20,10 +20,10 @@
         <div class="block" data-sprite="block-plain">
           <svg class="letter" viewBox="-0.5 -0.5 6 8" aria-hidden="true"><path d="M1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM0 1h1v1h-1zM0 2h1v1h-1zM1 3h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM4 4h1v1h-1zM4 5h1v1h-1zM0 6h1v1h-1zM1 6h1v1h-1zM2 6h1v1h-1zM3 6h1v1h-1z"/></svg>
         </div>
-        <button class="block is-link" id="about-block" data-sprite="block-link" data-icon="icon-scroll" aria-haspopup="dialog" aria-label="About Sawyer">
+        <button class="block is-link" id="about-block" data-sprite="block-link" data-icon="icon-scroll" aria-haspopup="dialog" aria-label="About">
           <svg class="letter" viewBox="-0.5 -0.5 6 8" aria-hidden="true"><path d="M1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM0 1h1v1h-1zM4 1h1v1h-1zM0 2h1v1h-1zM4 2h1v1h-1zM0 3h1v1h-1zM1 3h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM0 4h1v1h-1zM4 4h1v1h-1zM0 5h1v1h-1zM4 5h1v1h-1zM0 6h1v1h-1zM4 6h1v1h-1z"/></svg>
         </button>
-        <a class="block is-link" id="email-block" href="mailto:sawyerzincone@gmail.com" data-sprite="block-link" data-icon="icon-envelope" aria-label="Email Sawyer">
+        <a class="block is-link" id="email-block" href="mailto:sawyerzincone@gmail.com" data-sprite="block-link" data-icon="icon-envelope" aria-label="Email">
           <svg class="letter" viewBox="-0.5 -0.5 6 8" aria-hidden="true"><path d="M0 0h1v1h-1zM4 0h1v1h-1zM0 1h1v1h-1zM4 1h1v1h-1zM0 2h1v1h-1zM4 2h1v1h-1zM0 3h1v1h-1zM2 3h1v1h-1zM4 3h1v1h-1zM0 4h1v1h-1zM2 4h1v1h-1zM4 4h1v1h-1zM0 5h1v1h-1zM1 5h1v1h-1zM3 5h1v1h-1zM4 5h1v1h-1zM0 6h1v1h-1zM4 6h1v1h-1z"/></svg>
         </a>
       </div><!--
@@ -31,16 +31,24 @@
         <div class="block" data-sprite="block-plain">
           <svg class="letter" viewBox="-0.5 -0.5 6 8" aria-hidden="true"><path d="M0 0h1v1h-1zM4 0h1v1h-1zM0 1h1v1h-1zM4 1h1v1h-1zM1 2h1v1h-1zM3 2h1v1h-1zM2 3h1v1h-1zM2 4h1v1h-1zM2 5h1v1h-1zM2 6h1v1h-1z"/></svg>
         </div>
-        <div class="block" data-sprite="block-plain">
+        <a class="block is-link" id="resume-block" href="resume.pdf" target="_blank" rel="noopener" data-sprite="block-link" data-icon="icon-page" aria-label="Resume (PDF, opens in new tab)">
           <svg class="letter" viewBox="-0.5 -0.5 6 8" aria-hidden="true"><path d="M0 0h1v1h-1zM1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM0 1h1v1h-1zM0 2h1v1h-1zM0 3h1v1h-1zM1 3h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM0 4h1v1h-1zM0 5h1v1h-1zM0 6h1v1h-1zM1 6h1v1h-1zM2 6h1v1h-1zM3 6h1v1h-1zM4 6h1v1h-1z"/></svg>
-        </div>
-        <a class="block is-link" id="linkedin-block" href="https://www.linkedin.com/in/szincone/" data-sprite="block-link" data-icon="icon-briefcase" aria-label="Sawyer on LinkedIn">
+        </a>
+        <a class="block is-link" id="linkedin-block" href="https://www.linkedin.com/in/szincone/" data-sprite="block-link" data-icon="icon-briefcase" aria-label="LinkedIn">
           <svg class="letter" viewBox="-0.5 -0.5 6 8" aria-hidden="true"><path d="M0 0h1v1h-1zM1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM0 1h1v1h-1zM4 1h1v1h-1zM0 2h1v1h-1zM4 2h1v1h-1zM0 3h1v1h-1zM1 3h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM0 4h1v1h-1zM2 4h1v1h-1zM0 5h1v1h-1zM3 5h1v1h-1zM0 6h1v1h-1zM4 6h1v1h-1z"/></svg>
         </a>
       </div>
     </div>
 
-    <p class="hint" aria-hidden="true">press the glowing blocks</p>
+    <p class="legend" id="legend" aria-hidden="true">
+      <span><b>A</b> ABOUT</span>
+      <span class="legend-dot">&middot;</span>
+      <span><b>W</b> EMAIL</span>
+      <span class="legend-dot">&middot;</span>
+      <span><b>E</b> RESUME</span>
+      <span class="legend-dot">&middot;</span>
+      <span><b>R</b> LINKEDIN</span>
+    </p>
 
     <noscript>
       <div class="noscript-card">

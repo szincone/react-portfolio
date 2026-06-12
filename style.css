@@ -61,8 +61,9 @@ main {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 14px;
-  margin-top: 8vh;
+  column-gap: 14px;
+  row-gap: 64px; /* leaves headroom for the floating telegraph icons */
+  margin-top: 10vh;
 }
 
 .trio {
@@ -128,6 +129,28 @@ main {
   100% { transform: translateY(0) scale(1, 1); }
 }
 
+/* small icon floating above each link block, telegraphing its action */
+.tele-icon {
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  margin-bottom: 10px;
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+  pointer-events: none;
+  opacity: 0.95;
+  transition: opacity 0.15s;
+  animation: tele-bob 2.8s ease-in-out infinite;
+  animation-delay: var(--tele-delay, 0s);
+}
+
+.tele-icon.hidden { opacity: 0; }
+
+@keyframes tele-bob {
+  0%, 100% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, -6px); }
+}
+
 /* icon that pops out of a bumped block */
 .pop-icon {
   position: absolute;
@@ -142,15 +165,27 @@ main {
   opacity: 0;
 }
 
-.hint {
+.legend {
   margin-top: 42px;
-  font-size: 14px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #ffffff;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 10px;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 0.14em;
+  color: rgba(255, 255, 255, 0.92);
   text-shadow: 2px 2px 0 rgba(29, 34, 64, 0.45);
-  animation: bob 3.2s ease-in-out infinite;
+  transition: opacity 0.6s;
 }
+
+.legend b {
+  color: #ffe27a;
+}
+
+.legend-dot { opacity: 0.6; }
+
+.legend.faded { opacity: 0.45; }
 
 /* ----------------------------------------------------------- dialog */
 
@@ -243,7 +278,8 @@ dialog#about-dialog::backdrop {
 /* --------------------------------------------------- reduced motion */
 
 @media (prefers-reduced-motion: reduce) {
-  .block, .hint { animation: none; }
+  .block { animation: none; }
   .block.bumping { animation: none; }
   .pop-icon { display: none; }
+  .tele-icon { animation: none; }
 }

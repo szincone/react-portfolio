@@ -67,8 +67,35 @@
     }
 
     Array.prototype.forEach.call(links, function (el) {
+      addTeleIcon(el, sprites, atlas);
       wireLinkBlock(el, sprites, atlas);
     });
+  }
+
+  // floating icon above a link block, telegraphing what it does
+  function addTeleIcon(el, sprites, atlas) {
+    var name = el.getAttribute('data-icon');
+    if (!name) return;
+    var r = frameRect(sprites, name, 0);
+    var icon = document.createElement('span');
+    icon.className = 'tele-icon';
+    icon.style.width = r.w * BLOCK_SCALE + 'px';
+    icon.style.height = r.h * BLOCK_SCALE + 'px';
+    icon.style.backgroundImage = 'url(assets/sprites.png)';
+    icon.style.backgroundSize =
+      atlas.width * BLOCK_SCALE + 'px ' + atlas.height * BLOCK_SCALE + 'px';
+    icon.style.backgroundPosition =
+      -r.x * BLOCK_SCALE + 'px ' + -r.y * BLOCK_SCALE + 'px';
+    icon.style.setProperty('--tele-delay', (-Math.random() * 2.8).toFixed(2) + 's');
+    el.appendChild(icon);
+  }
+
+  var legendFaded = false;
+  function fadeLegend() {
+    if (legendFaded) return;
+    legendFaded = true;
+    var legend = document.getElementById('legend');
+    if (legend) legend.classList.add('faded');
   }
 
   function bump(el) {
@@ -92,6 +119,12 @@
     icon.style.backgroundPosition =
       -r.x * BLOCK_SCALE + 'px ' + -r.y * BLOCK_SCALE + 'px';
     el.appendChild(icon);
+    // the telegraph icon ducks out of the way while its twin arcs
+    var tele = el.querySelector('.tele-icon');
+    if (tele) {
+      tele.classList.add('hidden');
+      setTimeout(function () { tele.classList.remove('hidden'); }, 800);
+    }
     var dir = Math.random() < 0.5 ? -1 : 1;
     var anim = icon.animate([
       { transform: 'translate(0, 6px)', opacity: 0 },
@@ -105,6 +138,7 @@
   function wireLinkBlock(el, sprites, atlas) {
     var busy = false;
     var preview = function () {
+      fadeLegend();
       if (busy || REDUCED) return;
       busy = true;
       bump(el);
@@ -115,6 +149,7 @@
     el.addEventListener('focus', preview);
 
     el.addEventListener('click', function (event) {
+      fadeLegend();
       var fire = function () {
         if (el.id === 'about-block') {
           document.getElementById('about-dialog').showModal();
@@ -125,6 +160,13 @@
       if (REDUCED) {
         if (el.id === 'about-block') fire();
         return; // links navigate natively
+      }
+      if (el.getAttribute('target') === '_blank') {
+        // let the browser open the new tab synchronously (popup-blocker
+        // safe); the bump still plays on this page
+        bump(el);
+        popIcon(el, sprites, atlas);
+        return;
       }
       event.preventDefault();
       bump(el);

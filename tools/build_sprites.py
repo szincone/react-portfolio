@@ -112,20 +112,43 @@ CLOUD_2 = [
 CLOUD_COLORS = {"#": (255, 255, 255, 255), "?": (255, 255, 255, 255),
                 "!": (219, 238, 254, 255), "+": (219, 238, 254, 255)}
 
+# pixel page/document icon for the resume block, in the icon-pack style
+PAGE_TEMPLATE = [
+    ".########...",
+    ".#wwwwww##..",
+    ".#wwwwww#w#.",
+    ".#wwwwww###.",
+    ".#wwwwwwww#.",
+    ".#w~~~~~ww#.",
+    ".#wwwwwwww#.",
+    ".#w~~~~~ww#.",
+    ".#wwwwwwww#.",
+    ".#w~~~~www#.",
+    ".#wwwwwwww#.",
+    ".##########.",
+]
 
-def synth_cloud(template, px_size=3):
+PAGE_COLORS = {"#": (52, 63, 84, 255), "w": (248, 250, 252, 255),
+               "~": (139, 156, 178, 255)}
+
+
+def synth_bitmap(template, colors, px_size):
     h = len(template)
     w = max(len(row) for row in template)
     im = Image.new("RGBA", (w * px_size, h * px_size), (0, 0, 0, 0))
     p = im.load()
     for y, row in enumerate(template):
         for x, ch in enumerate(row):
-            color = CLOUD_COLORS.get(ch)
+            color = colors.get(ch)
             if color:
                 for dy in range(px_size):
                     for dx in range(px_size):
                         p[x * px_size + dx, y * px_size + dy] = color
     return im
+
+
+def synth_cloud(template, px_size=3):
+    return synth_bitmap(template, CLOUD_COLORS, px_size)
 
 
 # -------------------------------------------------------------------- atlas
@@ -206,6 +229,7 @@ def main():
 
     icons = split_islands(keyed["icons"], 3)  # scroll, envelope, briefcase
     icons = [normalize_group([i], 24)[0] for i in icons]
+    icon_page = synth_bitmap(PAGE_TEMPLATE, PAGE_COLORS, 2)  # 24px tall
 
     ground = trim(keyed["ground"])
     gscale = 48 / ground.height
@@ -225,6 +249,7 @@ def main():
         "icon-scroll": [icons[0]],
         "icon-envelope": [icons[1]],
         "icon-briefcase": [icons[2]],
+        "icon-page": [icon_page],
         "cloud-1": [clouds[0]],
         "cloud-2": [clouds[1]],
         "ground": [ground],
