@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Sawyer Zincone — Full-Stack Engineer" />
+  <meta name="theme-color" content="#6b8cff" />
+  <title>Sawyer Zincone</title>
+  <link rel="shortcut icon" href="favicon.ico" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <canvas id="scene" aria-hidden="true"></canvas>
+
+  <main>
+    <h1 class="visually-hidden">Sawyer Zincone — Full-Stack Engineer</h1>
+
+    <div class="word" id="word">
+      <div class="trio">
+        <div class="block" data-sprite="block-plain">
+          <svg class="letter" viewBox="-0.5 -0.5 6 8" aria-hidden="true"><path d="M1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM0 1h1v1h-1zM0 2h1v1h-1zM1 3h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM4 4h1v1h-1zM4 5h1v1h-1zM0 6h1v1h-1zM1 6h1v1h-1zM2 6h1v1h-1zM3 6h1v1h-1z"/></svg>
+        </div>
+        <button class="block is-link" id="about-block" data-sprite="block-link" data-icon="icon-scroll" aria-haspopup="dialog" aria-label="About">
+          <svg class="letter" viewBox="-0.5 -0.5 6 8" aria-hidden="true"><path d="M1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM0 1h1v1h-1zM4 1h1v1h-1zM0 2h1v1h-1zM4 2h1v1h-1zM0 3h1v1h-1zM1 3h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM0 4h1v1h-1zM4 4h1v1h-1zM0 5h1v1h-1zM4 5h1v1h-1zM0 6h1v1h-1zM4 6h1v1h-1z"/></svg>
+        </button>
+        <a class="block is-link" id="email-block" href="mailto:sawyerzincone@gmail.com" data-sprite="block-link" data-icon="icon-envelope" aria-label="Email">
+          <svg class="letter" viewBox="-0.5 -0.5 6 8" aria-hidden="true"><path d="M0 0h1v1h-1zM4 0h1v1h-1zM0 1h1v1h-1zM4 1h1v1h-1zM0 2h1v1h-1zM4 2h1v1h-1zM0 3h1v1h-1zM2 3h1v1h-1zM4 3h1v1h-1zM0 4h1v1h-1zM2 4h1v1h-1zM4 4h1v1h-1zM0 5h1v1h-1zM1 5h1v1h-1zM3 5h1v1h-1zM4 5h1v1h-1zM0 6h1v1h-1zM4 6h1v1h-1z"/></svg>
+        </a>
+      </div><!--
+      --><div class="trio">
+        <div class="block" data-sprite="block-plain">
+          <svg class="letter" viewBox="-0.5 -0.5 6 8" aria-hidden="true"><path d="M0 0h1v1h-1zM4 0h1v1h-1zM0 1h1v1h-1zM4 1h1v1h-1zM1 2h1v1h-1zM3 2h1v1h-1zM2 3h1v1h-1zM2 4h1v1h-1zM2 5h1v1h-1zM2 6h1v1h-1z"/></svg>
+        </div>
+        <a class="block is-link" id="resume-block" href="resume.pdf" target="_blank" rel="noopener" data-sprite="block-link" data-icon="icon-page" aria-label="Resume (PDF, opens in new tab)">
+          <svg class="letter" viewBox="-0.5 -0.5 6 8" aria-hidden="true"><path d="M0 0h1v1h-1zM1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM0 1h1v1h-1zM0 2h1v1h-1zM0 3h1v1h-1zM1 3h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM0 4h1v1h-1zM0 5h1v1h-1zM0 6h1v1h-1zM1 6h1v1h-1zM2 6h1v1h-1zM3 6h1v1h-1zM4 6h1v1h-1z"/></svg>
+        </a>
+        <a class="block is-link" id="linkedin-block" href="https://www.linkedin.com/in/szincone/" data-sprite="block-link" data-icon="icon-briefcase" aria-label="LinkedIn">
+          <svg class="letter" viewBox="-0.5 -0.5 6 8" aria-hidden="true"><path d="M0 0h1v1h-1zM1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM0 1h1v1h-1zM4 1h1v1h-1zM0 2h1v1h-1zM4 2h1v1h-1zM0 3h1v1h-1zM1 3h1v1h-1zM2 3h1v1h-1zM3 3h1v1h-1zM0 4h1v1h-1zM2 4h1v1h-1zM0 5h1v1h-1zM3 5h1v1h-1zM0 6h1v1h-1zM4 6h1v1h-1z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <p class="legend" id="legend" aria-hidden="true">
+      <span><b>A</b> ABOUT</span>
+      <span class="legend-dot">&middot;</span>
+      <span><b>W</b> EMAIL</span>
+      <span class="legend-dot">&middot;</span>
+      <span><b>E</b> RESUME</span>
+      <span class="legend-dot">&middot;</span>
+      <span><b>R</b> LINKEDIN</span>
+    </p>
+
+    <noscript>
+      <div class="noscript-card">
+        <p class="noscript-name">SAWYER ZINCONE</p>
+        <p>Full-Stack Engineer. I craft clean, efficient code and enjoy
+        translating complex ideas into simple designs. Off the clock:
+        guitar, weights, basketball, and two cats.</p>
+        <p>
+          <a href="mailto:sawyerzincone@gmail.com">Email</a> &middot;
+          <a href="https://www.linkedin.com/in/szincone/">LinkedIn</a> &middot;
+          <a href="resume.pdf">Resume</a>
+        </p>
+      </div>
+    </noscript>
+  </main>
+
+  <dialog id="about-dialog" aria-labelledby="about-title">
+    <div class="dialog-frame">
+      <button class="dialog-close" id="about-close" aria-label="Close">&#10005;</button>
+      <h2 id="about-title">ABOUT</h2>
+      <p>I'm Sawyer Zincone, a Full-Stack Engineer fueled by a passion for
+      crafting clean, efficient code and fostering collaboration. Lifelong
+      learner adept at translating complex ideas into simple,
+      easy-to-understand designs.</p>
+      <p>When I'm not programming I'm usually playing guitar, lifting
+      weights, watching basketball, or relaxing with my wife and our two
+      cats.</p>
+    </div>
+  </dialog>
+
+  <script src="main.js"></script>
+</body>
+</html>

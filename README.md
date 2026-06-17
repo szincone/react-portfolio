@@ -1,16 +1,18 @@
-# 🗿 react-portfolio
-Portfolio site built w/ React, Material-UI, and Particle.js.
+# sawyerzincone.com
 
-## modules
-- Material-UI
-- Particle.js
-- Prop-Types
-- Font-Awesome
+Ambient Mario-inspired pixel page. Plain HTML/CSS/JS — no framework, no
+build step.
 
-## authors
-- Sawyer Zincone -_initial work_- [szincone](https://github.com/szincone) 🗿
+- `index.html`, `style.css`, `main.js` — the whole site
+- `assets/sprites.png` + `assets/sprites.json` — sprite atlas; all game
+  code reads only the JSON
+- `assets/raw/` — source pixel art (magenta-keyed); not deployed
+- `tools/build_sprites.py` — regenerates the atlas from the raw art
+  (`pip install pillow`, then `python3 tools/build_sprites.py` from the
+  repo root)
+
+Deploys to GitHub Pages via `.github/workflows/deploy.yml` on every push
+to `master` (publishes the repo root to the `gh-pages` branch).
 
 ## license
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/szincone/nba-api/blob/master/LICENSE) file for details.
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+MIT — see [LICENSE](LICENSE).
