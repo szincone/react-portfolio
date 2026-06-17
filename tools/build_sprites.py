@@ -225,10 +225,8 @@ def main():
     walk = split_islands(keyed["sawyer-walk"], 4)
     idle = split_islands(keyed["sawyer-idle"], 2)
     jump = [trim(keyed["sawyer-jump"])]
-    # normalize facing: walk/idle art faces left, jump faces right —
-    # mirror so every frame faces right and runtime flips are uniform
-    walk = [f.transpose(Image.FLIP_LEFT_RIGHT) for f in walk]
-    idle = [f.transpose(Image.FLIP_LEFT_RIGHT) for f in idle]
+    # every Sawyer pose is drawn facing right in the source art (like the
+    # cats); the runtime mirrors him to face left when he heads left
     # one scale across every Sawyer pose so walk/idle/jump stay proportional
     sawyer = normalize_group(walk + idle + jump, 64)
     walk, idle, jump = sawyer[:4], sawyer[4:6], sawyer[6:]
@@ -236,10 +234,13 @@ def main():
     cat_brown = normalize_group(split_islands(keyed["cat-brown"], 2), 40)
     cat_gray = normalize_group(split_islands(keyed["cat-gray"], 2), 40)
 
-    # ambient cyclist; source already faces right (runtime flips her to ride
-    # left). Total height 106px so the rider's body (~90% of the sprite, the
-    # rest is wheels below her feet) lands near Sawyer-man's on-screen height.
-    nikki_bike = normalize_group(split_islands(keyed["nikki-bike"], 2), 106)
+    # ambient cyclist; source art faces left, so mirror her to face right like
+    # everyone else (runtime flips her back to ride leftward). Total height
+    # 106px so the rider's body (~90% of the sprite, the rest is wheels below
+    # her feet) lands near Sawyer-man's on-screen height.
+    nikki_frames = [f.transpose(Image.FLIP_LEFT_RIGHT)
+                    for f in split_islands(keyed["nikki-bike"], 2)]
+    nikki_bike = normalize_group(nikki_frames, 106)
 
     dim, bright = split_islands(keyed["blocks"], 2)
     # push the plain block towards muted stone-gold so glowing link
