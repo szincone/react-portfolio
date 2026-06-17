@@ -245,10 +245,12 @@
       return out;
     }
     var sawyerContentH = measureContentHeights();
-    // normalize every pose to the jump's visible height so size is constant
+    // normalize every pose to the jump's visible height so size is constant,
+    // then scale the whole guy up so he stands tall over the cats (he's 6'4")
     var sawyerTargetH = sawyerContentH['sawyer-jump'];
+    var SAWYER_BOOST = 1.5;
     function sawyerScale(name) {
-      return sawyerTargetH / (sawyerContentH[name] || sawyerTargetH);
+      return SAWYER_BOOST * sawyerTargetH / (sawyerContentH[name] || sawyerTargetH);
     }
 
     function resize() {
