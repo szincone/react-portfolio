@@ -200,6 +200,57 @@
 
     function rectOf(name, frame) { return frameRect(sprites, name, frame); }
 
+    // Each Sawyer pose is bottom-aligned in a fixed 64px frame, but the art
+    // fills a different slice of it (jump fills the frame, walk/idle leave
+    // transparent headroom). Drawing every frame at the same frame scale made
+    // walk/idle look smaller than jump. Measure the real (opaque) height of
+    // each pose so we can scale them to one shared on-screen height.
+    var SAWYER_ANIMS = ['sawyer-walk', 'sawyer-idle', 'sawyer-jump'];
+    function measureContentHeights() {
+      var fallback = { 'sawyer-walk': 53, 'sawyer-idle': 60, 'sawyer-jump': 64 };
+      var oc = document.createElement('canvas');
+      oc.width = atlas.width;
+      oc.height = atlas.height;
+      var octx = oc.getContext('2d');
+      if (!octx) return fallback;
+      octx.drawImage(atlas, 0, 0);
+      var data;
+      try {
+        data = octx.getImageData(0, 0, atlas.width, atlas.height).data;
+      } catch (e) {
+        return fallback; // tainted canvas (e.g. file://) — use known values
+      }
+      var aw = atlas.width;
+      function frameContentH(f) {
+        var top = f.h, bottom = -1;
+        for (var y = 0; y < f.h; y++) {
+          for (var x = 0; x < f.w; x++) {
+            if (data[((f.y + y) * aw + (f.x + x)) * 4 + 3] > 8) {
+              if (y < top) top = y;
+              if (y > bottom) bottom = y;
+              break;
+            }
+          }
+        }
+        return bottom >= top ? bottom - top + 1 : f.h;
+      }
+      var out = {};
+      SAWYER_ANIMS.forEach(function (name) {
+        var h = 0;
+        sprites[name].frames.forEach(function (f) {
+          h = Math.max(h, frameContentH(f));
+        });
+        out[name] = h || fallback[name];
+      });
+      return out;
+    }
+    var sawyerContentH = measureContentHeights();
+    // normalize every pose to the jump's visible height so size is constant
+    var sawyerTargetH = sawyerContentH['sawyer-jump'];
+    function sawyerScale(name) {
+      return sawyerTargetH / (sawyerContentH[name] || sawyerTargetH);
+    }
+
     function resize() {
       W = window.innerWidth;
       H = window.innerHeight;
@@ -249,7 +300,7 @@
     function startJump() {
       if (sawyer.jumping) return;
       sawyer.jumping = true;
-      sawyer.vy = -310;
+      sawyer.vy = -460; // higher arc so he clears a cat and lands beside it
       sawyer.jumpY = 0;
     }
 
@@ -270,7 +321,9 @@
         }
       }
       if (sawyer.mode === 'walk' || sawyer.jumping) {
-        sawyer.x += sawyer.dir * 70 * S * dt;
+        // leap forward faster while airborne so the hop carries him past a cat
+        var hspeed = sawyer.jumping ? 120 : 70;
+        sawyer.x += sawyer.dir * hspeed * S * dt;
         var margin = 24;
         var sw = rectOf('sawyer-walk', 0).w * S;
         if (sawyer.x < margin) { sawyer.x = margin; sawyer.dir = 1; }
@@ -296,8 +349,11 @@
         if (cat.x > W - 8 - cw) { cat.x = W - 8 - cw; cat.dir = -1; }
         var dx = cat.x + cw / 2 - (sawyer.x + 14 * S);
         var approaching = (dx > 0 && sawyer.dir > 0) || (dx < 0 && sawyer.dir < 0);
-        if (!sawyer.jumping && sawyer.mode === 'walk' && approaching &&
-            Math.abs(dx) < 85 * S) {
+        // only hop a cat closing in head-on; chasing a cat fleeing the same
+        // way could otherwise drop him on top of it as it slips underneath
+        var headOn = cat.dir * -dx > 0;
+        if (!sawyer.jumping && sawyer.mode === 'walk' && approaching && headOn &&
+            Math.abs(dx) < 60 * S) {
           startJump();
         }
       });
@@ -350,10 +406,13 @@
       var animName = sawyer.jumping ? 'sawyer-jump'
         : (sawyer.mode === 'walk' ? 'sawyer-walk' : 'sawyer-idle');
       var sr = rectOf(animName, 0);
+      // scale each pose to the shared height; feet stay pinned to the ground
+      // and he stays horizontally centered so growing walk/idle doesn't shift
+      var scale = S * sawyerScale(animName);
+      var sx = sawyer.x - sr.w * (scale - S) / 2;
+      var sy = gy + 2 * S - sr.h * scale + sawyer.jumpY * S;
       // all sprites face right in the atlas; flip when heading left
-      drawSprite(animName, animFrame(animName, 0),
-        sawyer.x, gy - sr.h * S + 2 * S + sawyer.jumpY * S,
-        S, sawyer.dir < 0);
+      drawSprite(animName, animFrame(animName, 0), sx, sy, scale, sawyer.dir < 0);
     }
 
     var last = 0;

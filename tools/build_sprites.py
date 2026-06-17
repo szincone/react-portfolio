@@ -131,6 +131,24 @@ PAGE_TEMPLATE = [
 PAGE_COLORS = {"#": (52, 63, 84, 255), "w": (248, 250, 252, 255),
                "~": (139, 156, 178, 255)}
 
+# pixel trophy icon for the Brawlux block, in the icon-pack style
+TROPHY_TEMPLATE = [
+    "..OOOOOOO..",
+    ".OGGGGGGGO.",
+    "OOGGGGGGGOO",
+    "OGOGGGGGOGO",
+    "OGOGGGGGOGO",
+    ".OOGGGGGOO.",
+    "..OGGGGGO..",
+    "...OGGGO...",
+    "....OGO....",
+    "...OOGOO...",
+    "..OGGGGGO..",
+    "..OOOOOOO..",
+]
+
+TROPHY_COLORS = {"O": (52, 63, 84, 255), "G": (247, 197, 49, 255)}
+
 
 def synth_bitmap(template, colors, px_size):
     h = len(template)
@@ -230,6 +248,7 @@ def main():
     icons = split_islands(keyed["icons"], 3)  # scroll, envelope, briefcase
     icons = [normalize_group([i], 24)[0] for i in icons]
     icon_page = synth_bitmap(PAGE_TEMPLATE, PAGE_COLORS, 2)  # 24px tall
+    icon_brawlux = synth_bitmap(TROPHY_TEMPLATE, TROPHY_COLORS, 2)  # 24px tall
 
     ground = trim(keyed["ground"])
     gscale = 48 / ground.height
@@ -250,6 +269,7 @@ def main():
         "icon-envelope": [icons[1]],
         "icon-briefcase": [icons[2]],
         "icon-page": [icon_page],
+        "icon-brawlux": [icon_brawlux],
         "cloud-1": [clouds[0]],
         "cloud-2": [clouds[1]],
         "ground": [ground],
