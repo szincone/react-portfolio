@@ -16,8 +16,8 @@
   }
 
   Promise.all([
-    fetch('assets/sprites.json?v=61857f8d').then(function (r) { return r.json(); }),
-    loadImage('assets/sprites.png?v=61857f8d'),
+    fetch('assets/sprites.json?v=f4bf94e6').then(function (r) { return r.json(); }),
+    loadImage('assets/sprites.png?v=f4bf94e6'),
   ]).then(function (loaded) {
     var sprites = loaded[0].sprites;
     var atlas = loaded[1];
@@ -37,7 +37,7 @@
     var r = frameRect(sprites, name, frame);
     el.style.width = r.w * BLOCK_SCALE + 'px';
     el.style.height = r.h * BLOCK_SCALE + 'px';
-    el.style.backgroundImage = 'url(assets/sprites.png?v=61857f8d)';
+    el.style.backgroundImage = 'url(assets/sprites.png?v=f4bf94e6)';
     el.style.backgroundSize =
       atlas.width * BLOCK_SCALE + 'px ' + atlas.height * BLOCK_SCALE + 'px';
     el.style.backgroundPosition =
@@ -81,7 +81,7 @@
     icon.className = 'tele-icon';
     icon.style.width = r.w * BLOCK_SCALE + 'px';
     icon.style.height = r.h * BLOCK_SCALE + 'px';
-    icon.style.backgroundImage = 'url(assets/sprites.png?v=61857f8d)';
+    icon.style.backgroundImage = 'url(assets/sprites.png?v=f4bf94e6)';
     icon.style.backgroundSize =
       atlas.width * BLOCK_SCALE + 'px ' + atlas.height * BLOCK_SCALE + 'px';
     icon.style.backgroundPosition =
@@ -113,7 +113,7 @@
     icon.style.width = r.w * BLOCK_SCALE + 'px';
     icon.style.height = r.h * BLOCK_SCALE + 'px';
     icon.style.marginLeft = -(r.w * BLOCK_SCALE) / 2 + 'px';
-    icon.style.backgroundImage = 'url(assets/sprites.png?v=61857f8d)';
+    icon.style.backgroundImage = 'url(assets/sprites.png?v=f4bf94e6)';
     icon.style.backgroundSize =
       atlas.width * BLOCK_SCALE + 'px ' + atlas.height * BLOCK_SCALE + 'px';
     icon.style.backgroundPosition =
@@ -207,7 +207,7 @@
     // each pose so we can scale them to one shared on-screen height.
     var SAWYER_ANIMS = ['sawyer-walk', 'sawyer-idle', 'sawyer-jump'];
     function measureContentHeights() {
-      var fallback = { 'sawyer-walk': 53, 'sawyer-idle': 60, 'sawyer-jump': 64 };
+      var fallback = { 'sawyer-walk': 106, 'sawyer-idle': 119, 'sawyer-jump': 128 };
       var oc = document.createElement('canvas');
       oc.width = atlas.width;
       oc.height = atlas.height;
@@ -248,7 +248,10 @@
     // normalize every pose to the jump's visible height so size is constant,
     // then scale the whole guy up so he stands tall over the cats (he's 6'4")
     var sawyerTargetH = sawyerContentH['sawyer-jump'];
-    var SAWYER_BOOST = 1.5;
+    // sprites are stored supersampled (2x display size); 0.75 lands his
+    // jump pose at the same on-screen height as before (was 1.5 against a
+    // half-resolution atlas) while rendering from twice the source detail.
+    var SAWYER_BOOST = 0.75;
     function sawyerScale(name) {
       return SAWYER_BOOST * sawyerTargetH / (sawyerContentH[name] || sawyerTargetH);
     }
@@ -448,8 +451,9 @@
       // Atlas art faces right; flip so she heads left. Wheels meet the ground.
       if (nikki.active) {
         var nkr = rectOf('nikki-bike', 0);
+        var nscale = S * 0.5; // stored supersampled (2x); render to display size
         drawSprite('nikki-bike', animFrame('nikki-bike', 0),
-          nikki.x, gy - nkr.h * S + 4 * S, S, true);
+          nikki.x, gy - nkr.h * nscale + 4 * S, nscale, true);
       }
     }
 
