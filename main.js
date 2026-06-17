@@ -284,6 +284,16 @@
       { name: 'cat-gray', x: 0.12, dir: 1, speed: 28, phase: 0.5 },
     ];
 
+    // ambient cyclist: crosses right-to-left now and then, then waits a while.
+    // Purely decorative — no collision with Sawyer-man or the cats.
+    var nikki = {
+      active: false,
+      x: 0,
+      speed: 140,                       // px/s (before S); brisker than a walk
+      nextIn: 5 + Math.random() * 7,    // first ride shows up soon-ish
+    };
+    function nikkiInterval() { return 30 + Math.random() * 15; } // 30-45s
+
     var clouds = [
       { name: 'cloud-1', x: 0.15, y: 0.10, v: 7, scale: 2 },
       { name: 'cloud-2', x: 0.55, y: 0.22, v: 10, scale: 2 },
@@ -365,6 +375,22 @@
         cloud.x += cloud.v * dt;
         if (cloud.x > W + 20) cloud.x = -cw - 10;
       });
+
+      // ambient cyclist crossing right -> left, then idle until next interval
+      var nw = rectOf('nikki-bike', 0).w * S;
+      if (nikki.active) {
+        nikki.x -= nikki.speed * S * dt;
+        if (nikki.x + nw < 0) {           // fully off the left edge
+          nikki.active = false;
+          nikki.nextIn = nikkiInterval();
+        }
+      } else {
+        nikki.nextIn -= dt;
+        if (nikki.nextIn <= 0) {
+          nikki.active = true;
+          nikki.x = W;                    // enter from the right edge
+        }
+      }
     }
 
     function drawSprite(name, frame, x, y, scale, flip) {
@@ -397,6 +423,14 @@
       var gy = groundTop();
       for (var gx = 0; gx < W; gx += gr.w * S) {
         drawSprite('ground', 0, gx, gy, S, false);
+      }
+
+      // cyclist rides along the ground line, behind Sawyer-man and the cats.
+      // Atlas art faces right; flip so she heads left. Wheels meet the ground.
+      if (nikki.active) {
+        var nkr = rectOf('nikki-bike', 0);
+        drawSprite('nikki-bike', animFrame('nikki-bike', 0),
+          nikki.x, gy - nkr.h * S + 4 * S, S, true);
       }
 
       cats.forEach(function (cat) {
@@ -436,6 +470,7 @@
         sawyer.x *= k;
         cats.forEach(function (c) { c.x *= k; });
         clouds.forEach(function (c) { c.x *= k; });
+        if (nikki.active) nikki.x *= k;
       }
       if (REDUCED) render();
     });

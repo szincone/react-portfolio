@@ -219,7 +219,7 @@ def verify_no_magenta(atlas):
 def main():
     keyed = {}
     for name in ["sawyer-walk", "sawyer-idle", "sawyer-jump", "cat-brown",
-                 "cat-gray", "blocks", "icons", "ground"]:
+                 "cat-gray", "nikki-bike", "blocks", "icons", "ground"]:
         keyed[name] = chroma_key(Image.open(f"{RAW}/{name}.png"))
 
     walk = split_islands(keyed["sawyer-walk"], 4)
@@ -235,6 +235,11 @@ def main():
 
     cat_brown = normalize_group(split_islands(keyed["cat-brown"], 2), 40)
     cat_gray = normalize_group(split_islands(keyed["cat-gray"], 2), 40)
+
+    # ambient cyclist; source already faces right (runtime flips her to ride
+    # left). Total height 106px so the rider's body (~90% of the sprite, the
+    # rest is wheels below her feet) lands near Sawyer-man's on-screen height.
+    nikki_bike = normalize_group(split_islands(keyed["nikki-bike"], 2), 106)
 
     dim, bright = split_islands(keyed["blocks"], 2)
     # push the plain block towards muted stone-gold so glowing link
@@ -263,6 +268,7 @@ def main():
         "sawyer-jump": jump,
         "cat-brown": cat_brown,
         "cat-gray": cat_gray,
+        "nikki-bike": nikki_bike,
         "block-plain": block_plain,
         "block-link": block_link,
         "icon-scroll": [icons[0]],
@@ -279,7 +285,7 @@ def main():
     verify_no_magenta(atlas)
 
     fps = {"sawyer-walk": 8, "sawyer-idle": 2, "sawyer-jump": 1,
-           "cat-brown": 5, "cat-gray": 4, "block-link": 3}
+           "cat-brown": 5, "cat-gray": 4, "nikki-bike": 6, "block-link": 3}
     for name, meta in manifest.items():
         meta["fps"] = fps.get(name, 0)
 
