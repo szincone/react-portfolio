@@ -75,16 +75,37 @@ def split_islands(im, expected):
 
 # ---------------------------------------------------------- group normalize
 
-def normalize_group(frames, target_h):
+def strip_magenta_fringe(im):
+    """Drop residual magenta/purple edge pixels (chroma-key fringe that a
+    quality downscale can blend back in). Magenta is the only hue here with
+    both red and blue clearly above green, so this never touches skin, teal,
+    gold, gray, or the red bike."""
+    px = im.load()
+    for y in range(im.height):
+        for x in range(im.width):
+            r, g, b, a = px[x, y]
+            if a > 0 and r > g + 12 and b > g + 12:
+                px[x, y] = (r, g, b, 0)
+    return im
+
+
+def normalize_group(frames, target_h, filt=Image.NEAREST):
     """Uniform-scale a frame group to target_h (tallest frame defines the
-    scale so relative pose sizes survive), bottom-aligned on the baseline."""
+    scale so relative pose sizes survive), bottom-aligned on the baseline.
+
+    filt is the resample filter for the downscale. NEAREST keeps chunky
+    sprites crisp; LANCZOS is used for the detailed human figures, whose
+    faces turn to mush (and pick up stray chroma-key speckles) under a hard
+    nearest-neighbor shrink from the large source art."""
     max_h = max(f.height for f in frames)
     scale = target_h / max_h
     out = []
     for f in frames:
         nw = max(1, round(f.width * scale))
         nh = max(1, round(f.height * scale))
-        scaled = f.resize((nw, nh), Image.NEAREST)
+        scaled = f.resize((nw, nh), filt)
+        if filt != Image.NEAREST:
+            scaled = strip_magenta_fringe(scaled)
         canvas = Image.new("RGBA", (nw, target_h), (0, 0, 0, 0))
         canvas.paste(scaled, (0, target_h - nh))
         out.append(canvas)
@@ -227,8 +248,9 @@ def main():
     jump = [trim(keyed["sawyer-jump"])]
     # every Sawyer pose is drawn facing right in the source art (like the
     # cats); the runtime mirrors him to face left when he heads left
-    # one scale across every Sawyer pose so walk/idle/jump stay proportional
-    sawyer = normalize_group(walk + idle + jump, 64)
+    # one scale across every Sawyer pose so walk/idle/jump stay proportional;
+    # LANCZOS keeps his face readable instead of mush at this tiny size
+    sawyer = normalize_group(walk + idle + jump, 64, Image.LANCZOS)
     walk, idle, jump = sawyer[:4], sawyer[4:6], sawyer[6:]
 
     cat_brown = normalize_group(split_islands(keyed["cat-brown"], 2), 40)
@@ -240,7 +262,7 @@ def main():
     # her feet) lands near Sawyer-man's on-screen height.
     nikki_frames = [f.transpose(Image.FLIP_LEFT_RIGHT)
                     for f in split_islands(keyed["nikki-bike"], 2)]
-    nikki_bike = normalize_group(nikki_frames, 106)
+    nikki_bike = normalize_group(nikki_frames, 106, Image.LANCZOS)
 
     dim, bright = split_islands(keyed["blocks"], 2)
     # push the plain block towards muted stone-gold so glowing link
