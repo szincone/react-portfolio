@@ -425,14 +425,6 @@
         drawSprite('ground', 0, gx, gy, S, false);
       }
 
-      // cyclist rides along the ground line, behind Sawyer-man and the cats.
-      // Atlas art faces right; flip so she heads left. Wheels meet the ground.
-      if (nikki.active) {
-        var nkr = rectOf('nikki-bike', 0);
-        drawSprite('nikki-bike', animFrame('nikki-bike', 0),
-          nikki.x, gy - nkr.h * S + 4 * S, S, true);
-      }
-
       cats.forEach(function (cat) {
         var r = rectOf(cat.name, 0);
         drawSprite(cat.name, animFrame(cat.name, cat.phase),
@@ -449,6 +441,16 @@
       var sy = gy + 2 * S - sr.h * scale + sawyer.jumpY * S;
       // all sprites face right in the atlas; flip when heading left
       drawSprite(animName, animFrame(animName, 0), sx, sy, scale, sawyer.dir < 0);
+
+      // cyclist rides along the ground line in the FOREGROUND, in front of
+      // Sawyer-man and the cats, so when she crosses paths she cleanly passes
+      // in front of them instead of her taller head poking up behind his.
+      // Atlas art faces right; flip so she heads left. Wheels meet the ground.
+      if (nikki.active) {
+        var nkr = rectOf('nikki-bike', 0);
+        drawSprite('nikki-bike', animFrame('nikki-bike', 0),
+          nikki.x, gy - nkr.h * S + 4 * S, S, true);
+      }
     }
 
     var last = 0;
