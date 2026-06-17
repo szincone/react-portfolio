@@ -1,0 +1,215 @@
+{
+ "image": "sprites.png",
+ "sprites": {
+  "sawyer-walk": {
+   "frameCount": 4,
+   "frames": [
+    {
+     "x": 0,
+     "y": 0,
+     "w": 28,
+     "h": 64
+    },
+    {
+     "x": 30,
+     "y": 0,
+     "w": 27,
+     "h": 64
+    },
+    {
+     "x": 59,
+     "y": 0,
+     "w": 28,
+     "h": 64
+    },
+    {
+     "x": 89,
+     "y": 0,
+     "w": 28,
+     "h": 64
+    }
+   ],
+   "fps": 8
+  },
+  "sawyer-idle": {
+   "frameCount": 2,
+   "frames": [
+    {
+     "x": 119,
+     "y": 0,
+     "w": 21,
+     "h": 64
+    },
+    {
+     "x": 142,
+     "y": 0,
+     "w": 21,
+     "h": 64
+    }
+   ],
+   "fps": 2
+  },
+  "sawyer-jump": {
+   "frameCount": 1,
+   "frames": [
+    {
+     "x": 165,
+     "y": 0,
+     "w": 46,
+     "h": 64
+    }
+   ],
+   "fps": 1
+  },
+  "cat-brown": {
+   "frameCount": 2,
+   "frames": [
+    {
+     "x": 236,
+     "y": 66,
+     "w": 55,
+     "h": 40
+    },
+    {
+     "x": 293,
+     "y": 66,
+     "w": 58,
+     "h": 40
+    }
+   ],
+   "fps": 5
+  },
+  "cat-gray": {
+   "frameCount": 2,
+   "frames": [
+    {
+     "x": 353,
+     "y": 66,
+     "w": 72,
+     "h": 40
+    },
+    {
+     "x": 427,
+     "y": 66,
+     "w": 72,
+     "h": 40
+    }
+   ],
+   "fps": 4
+  },
+  "block-plain": {
+   "frameCount": 1,
+   "frames": [
+    {
+     "x": 213,
+     "y": 0,
+     "w": 50,
+     "h": 48
+    }
+   ],
+   "fps": 0
+  },
+  "block-link": {
+   "frameCount": 2,
+   "frames": [
+    {
+     "x": 265,
+     "y": 0,
+     "w": 50,
+     "h": 48
+    },
+    {
+     "x": 317,
+     "y": 0,
+     "w": 50,
+     "h": 48
+    }
+   ],
+   "fps": 3
+  },
+  "icon-scroll": {
+   "frameCount": 1,
+   "frames": [
+    {
+     "x": 0,
+     "y": 116,
+     "w": 23,
+     "h": 24
+    }
+   ],
+   "fps": 0
+  },
+  "icon-envelope": {
+   "frameCount": 1,
+   "frames": [
+    {
+     "x": 25,
+     "y": 116,
+     "w": 32,
+     "h": 24
+    }
+   ],
+   "fps": 0
+  },
+  "icon-briefcase": {
+   "frameCount": 1,
+   "frames": [
+    {
+     "x": 59,
+     "y": 116,
+     "w": 25,
+     "h": 24
+    }
+   ],
+   "fps": 0
+  },
+  "icon-page": {
+   "frameCount": 1,
+   "frames": [
+    {
+     "x": 86,
+     "y": 116,
+     "w": 24,
+     "h": 24
+    }
+   ],
+   "fps": 0
+  },
+  "cloud-1": {
+   "frameCount": 1,
+   "frames": [
+    {
+     "x": 112,
+     "y": 116,
+     "w": 60,
+     "h": 18
+    }
+   ],
+   "fps": 0
+  },
+  "cloud-2": {
+   "frameCount": 1,
+   "frames": [
+    {
+     "x": 174,
+     "y": 116,
+     "w": 66,
+     "h": 15
+    }
+   ],
+   "fps": 0
+  },
+  "ground": {
+   "frameCount": 1,
+   "frames": [
+    {
+     "x": 0,
+     "y": 66,
+     "w": 234,
+     "h": 48
+    }
+   ],
+   "fps": 0
+  }
+ }
+}
