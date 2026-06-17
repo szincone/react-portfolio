@@ -15,6 +15,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      # Stamp the commit SHA onto cached asset URLs so browsers/CDN always
+      # fetch fresh JS, CSS, and sprite atlas after a deploy (source files stay
+      # clean; only the published copy is rewritten).
+      - name: Cache-bust asset references
+        run: |
+          VER="${GITHUB_SHA::8}"
+          sed -i "s#src=\"main.js\"#src=\"main.js?v=$VER\"#" index.html
+          sed -i "s#href=\"style.css\"#href=\"style.css?v=$VER\"#" index.html
+          sed -i "s#assets/sprites.png#assets/sprites.png?v=$VER#g" main.js
+          sed -i "s#assets/sprites.json#assets/sprites.json?v=$VER#g" main.js
+
       # Static site, no build step — publish the repo root as-is
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
