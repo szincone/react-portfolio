@@ -16,8 +16,8 @@
   }
 
   Promise.all([
-    fetch('assets/sprites.json?v=a2fbaede').then(function (r) { return r.json(); }),
-    loadImage('assets/sprites.png?v=a2fbaede'),
+    fetch('assets/sprites.json?v=61857f8d').then(function (r) { return r.json(); }),
+    loadImage('assets/sprites.png?v=61857f8d'),
   ]).then(function (loaded) {
     var sprites = loaded[0].sprites;
     var atlas = loaded[1];
@@ -37,7 +37,7 @@
     var r = frameRect(sprites, name, frame);
     el.style.width = r.w * BLOCK_SCALE + 'px';
     el.style.height = r.h * BLOCK_SCALE + 'px';
-    el.style.backgroundImage = 'url(assets/sprites.png?v=a2fbaede)';
+    el.style.backgroundImage = 'url(assets/sprites.png?v=61857f8d)';
     el.style.backgroundSize =
       atlas.width * BLOCK_SCALE + 'px ' + atlas.height * BLOCK_SCALE + 'px';
     el.style.backgroundPosition =
@@ -81,7 +81,7 @@
     icon.className = 'tele-icon';
     icon.style.width = r.w * BLOCK_SCALE + 'px';
     icon.style.height = r.h * BLOCK_SCALE + 'px';
-    icon.style.backgroundImage = 'url(assets/sprites.png?v=a2fbaede)';
+    icon.style.backgroundImage = 'url(assets/sprites.png?v=61857f8d)';
     icon.style.backgroundSize =
       atlas.width * BLOCK_SCALE + 'px ' + atlas.height * BLOCK_SCALE + 'px';
     icon.style.backgroundPosition =
@@ -113,7 +113,7 @@
     icon.style.width = r.w * BLOCK_SCALE + 'px';
     icon.style.height = r.h * BLOCK_SCALE + 'px';
     icon.style.marginLeft = -(r.w * BLOCK_SCALE) / 2 + 'px';
-    icon.style.backgroundImage = 'url(assets/sprites.png?v=a2fbaede)';
+    icon.style.backgroundImage = 'url(assets/sprites.png?v=61857f8d)';
     icon.style.backgroundSize =
       atlas.width * BLOCK_SCALE + 'px ' + atlas.height * BLOCK_SCALE + 'px';
     icon.style.backgroundPosition =
