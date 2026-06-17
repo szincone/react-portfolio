@@ -249,8 +249,10 @@ def main():
     # every Sawyer pose is drawn facing right in the source art (like the
     # cats); the runtime mirrors him to face left when he heads left
     # one scale across every Sawyer pose so walk/idle/jump stay proportional;
-    # LANCZOS keeps his face readable instead of mush at this tiny size
-    sawyer = normalize_group(walk + idle + jump, 64, Image.LANCZOS)
+    # LANCZOS keeps his face readable instead of mush at this tiny size.
+    # Stored at 2x the on-screen size (supersampled) so he stays sharp when
+    # drawn large — main.js renders him back down to his display height.
+    sawyer = normalize_group(walk + idle + jump, 128, Image.LANCZOS)
     walk, idle, jump = sawyer[:4], sawyer[4:6], sawyer[6:]
 
     cat_brown = normalize_group(split_islands(keyed["cat-brown"], 2), 40)
@@ -262,7 +264,7 @@ def main():
     # her feet) lands near Sawyer-man's on-screen height.
     nikki_frames = [f.transpose(Image.FLIP_LEFT_RIGHT)
                     for f in split_islands(keyed["nikki-bike"], 2)]
-    nikki_bike = normalize_group(nikki_frames, 106, Image.LANCZOS)
+    nikki_bike = normalize_group(nikki_frames, 212, Image.LANCZOS)  # 2x, see Sawyer note
 
     dim, bright = split_islands(keyed["blocks"], 2)
     # push the plain block towards muted stone-gold so glowing link
